@@ -12,13 +12,26 @@ class BlockEditor extends React.Component {
         /**
          * Id of Element that should contain Editor instance
          */
-        holderId: 'ce-block-editor',
+        holder: 'ce-block-editor',
         /**
          * Available Tools list.
          * Pass Tool's class or Settings object for each Tool you want to use
          */
         tools: {
           slateBlock: SlateBlock
+        },
+        data: {
+          time: 1552744582955,
+          blocks: [
+            {
+              type: 'paragraph',
+              data: {
+                text:
+                  'Hey. Meet the new Editor. On this page you can see it in action — try to edit this text.'
+              }
+            }
+          ],
+          version: '2.11.10'
         }
       });
     });
@@ -28,17 +41,6 @@ class BlockEditor extends React.Component {
     return (
       <div className="wrapper">
         <div id="ce-block-editor" className="ce-block-editor" />
-        <style jsx>{`
-          .wrapper {
-            display: flex;
-            justify-content: center;
-          }
-        `}</style>
-        <style global jsx>{`
-          .ce-block-editor {
-            width: 750px;
-          }
-        `}</style>
       </div>
     );
   }
