@@ -42,6 +42,13 @@
     "universal-cookie": "^3.0.7"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^5.3.13",
+    "@storybook/addon-links": "^5.3.13",
+    "@storybook/addons": "^5.3.13",
+    "@storybook/react": "^5.3.13",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.5",
+    "babel-preset-react": "^6.24.1",
     "cross-env": "^5.1.6"
   },
   "optionalDependencies": {
@@ -51,7 +58,9 @@
     "dev": "cross-env NODE_ENV=development PORT=3000 node index.js",
     "build": "next build",
     "start": "node index.js",
-    "postinstall": "next build"
+    "postinstall": "next build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "engines": {
     "node": "8.11.x"
