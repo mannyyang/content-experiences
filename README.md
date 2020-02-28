@@ -1,5 +1,7 @@
 # Content Experiences
 
+With editorjs.io as the main content editor, provide plugins that will provide rich content experiences.
+
 # Next.js Starter Project
 
 This is a starter project for React that uses Next.js.
