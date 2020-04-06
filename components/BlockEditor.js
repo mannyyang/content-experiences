@@ -1,4 +1,5 @@
-import SlateBlock from '~/components/editorPlugins/SlateBlock';
+import PropTypes from 'prop-types';
+import { Button } from 'reactstrap';
 
 class BlockEditor extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class BlockEditor extends React.Component {
   componentDidMount() {
     import('@editorjs/editorjs').then(editor => {
       const EditorJS = editor.default;
-      const editorjs = new EditorJS({
+      this.editorjs = new EditorJS({
         /**
          * Id of Element that should contain Editor instance
          */
@@ -18,7 +19,7 @@ class BlockEditor extends React.Component {
          * Pass Tool's class or Settings object for each Tool you want to use
          */
         tools: {
-          slateBlock: SlateBlock
+
         },
         data: {
           time: 1552744582955,
@@ -37,10 +38,28 @@ class BlockEditor extends React.Component {
     });
   }
 
+  onSave = () => {
+    this.editorjs
+      .save()
+      .then((outputData) => {
+        this.props.onSave(outputData);
+      })
+      .catch((error) => {
+        console.log('Saving failed: ', error)
+      });
+  }
+
   render() {
     return (
       <div className="wrapper">
         <div id="ce-block-editor" className="ce-block-editor" />
+        <Button
+          color="primary"
+          type="button"
+          onClick={this.onSave}
+        >
+          Save Changes
+        </Button>
       </div>
     );
   }

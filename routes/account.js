@@ -11,6 +11,7 @@ module.exports = (expressApp, functions) => {
 
   // Expose a route to return user profile if logged in with a session
   expressApp.get('/account/user', (req, res) => {
+    console.log('the user', req.user);
     if (req.user) {
       functions.find({id: req.user.id})
       .then(user => {
