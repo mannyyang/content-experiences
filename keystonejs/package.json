@@ -11,18 +11,22 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "dev": "cross-env NODE_ENV=development DISABLE_LOGGING=false keystone dev",
+    "dev": "cross-env NODE_ENV=development PORT=4000 DISABLE_LOGGING=true keystone dev",
     "build": "cross-env NODE_ENV=production keystone build",
     "start": "cross-env NODE_ENV=production keystone start",
     "create-tables": "keystone create-tables"
   },
   "dependencies": {
-    "@keystonejs/adapter-mongoose": "^8.0.0",
-    "@keystonejs/app-admin-ui": "^5.9.5",
+    "@keystonejs/adapter-mongoose": "^8.0.1",
+    "@keystonejs/app-admin-ui": "^5.9.6",
     "@keystonejs/app-graphql": "^5.1.5",
-    "@keystonejs/auth-password": "^5.1.5",
+    "@keystonejs/app-next": "^5.1.2",
+    "@keystonejs/auth-password": "^5.1.6",
     "@keystonejs/fields": "^9.0.1",
     "@keystonejs/keystone": "^8.1.1",
-    "cross-env": "^7.0.0"
+    "cross-env": "^7.0.0",
+    "next": "9.3.5",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   }
 }

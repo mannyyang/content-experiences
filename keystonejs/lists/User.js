@@ -34,10 +34,11 @@ module.exports = {
     password: {
       type: Password,
     },
-    // task: {
-    //   type: Relationship,
-    //   ref: 'Todo.assignee',
-    // }
+    task: {
+      type: Relationship,
+      ref: 'Todo.assignee',
+      many: true,
+    }
   },
   // List-level access controls
   access: {

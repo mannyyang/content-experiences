@@ -3,6 +3,7 @@ const { PasswordAuthStrategy } = require('@keystonejs/auth-password');
 const { Text, Checkbox, Password } = require('@keystonejs/fields');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
+const { NextApp } = require('@keystonejs/app-next');
 const constants = require('./constants');
 const TodoSchema = require('./lists/Todo.js');
 const UserSchema = require('./lists/User.js');
@@ -22,8 +23,6 @@ const keystone = new Keystone({
   onConnect: initialiseData,
 });
 
-console.log(UserSchema, TodoSchema);
-
 keystone.createList('User', UserSchema);
 keystone.createList('Todo', TodoSchema);
 
@@ -37,8 +36,9 @@ module.exports = {
   apps: [
     new GraphQLApp(),
     new AdminUIApp({
-      enableDefaultRoute: true,
+      enableDefaultRoute: false,
       authStrategy,
     }),
+    new NextApp({ dir: './client' }),
   ],
 };
