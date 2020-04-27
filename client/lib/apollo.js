@@ -1,12 +1,12 @@
-import { withData } from 'next-apollo'
-import { HttpLink } from 'apollo-boost'
+import { withData } from 'next-apollo';
+import { HttpLink } from 'apollo-boost';
 
 // can also be a function that accepts a `context` object (SSR only) and returns a config
 const config = {
   link: new HttpLink({
     credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
-    uri: '/admin/api', // Server URL
-  })
-}
+    uri: process.env.adminUrl, // Server URL
+  }),
+};
 
-export default withData(config)
+export default withData(config);
