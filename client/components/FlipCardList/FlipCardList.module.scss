@@ -1,0 +1,22 @@
+.flipCard {
+  perspective: 40rem;
+
+  .card-body {
+    display: flex;
+    transform-style: preserve-3d;
+    transition: var(--time) transform;
+  
+    .card:hover &, .card:focus & {
+      transform: rotateX(-180deg);
+    }
+  }
+  
+  .card-front, .card-back {
+    backface-visibility: hidden;
+    min-width: 100%;
+  }
+  
+  .card-back {
+    transform: rotateX(-180deg) translate(-100%, 0);
+  }
+}

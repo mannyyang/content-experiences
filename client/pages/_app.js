@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'graphql-voyager/dist/voyager.css';
+import '../components/FlipCard/styles.css';
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
