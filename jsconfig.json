@@ -2,8 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "components": ["./client/components"],
-      "lib": ["./client/lib"]
+      "components": ["client/components"],
+      "lib": ["client/lib"]
     }
   }
 }

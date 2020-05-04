@@ -1,9 +1,11 @@
+/* eslint-disable */
+import './app.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'graphql-voyager/dist/voyager.css';
-import '../components/FlipCard/styles.css';
+import '../components/Flippy/styles.css';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return <Component {...pageProps} />;
 }
 
 // Only uncomment this method if you have blocking data requirements for
@@ -18,4 +20,4 @@ function MyApp({ Component, pageProps }) {
 //   return { ...appProps }
 // }
 
-export default MyApp
+export default MyApp;

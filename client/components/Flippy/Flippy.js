@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 import FlippyFooter from './FlippyFooter';
 
 export default class Flippy extends React.Component {
@@ -6,32 +7,32 @@ export default class Flippy extends React.Component {
     super(props);
     this.state = {
       isFlipped: false,
-      isTouchDevice: false
+      isTouchDevice: false,
     };
   }
 
   static getDerivedStateFromProps(props, state) {
     return {
       ...state,
-      isFlipped: typeof props.isFlipped === 'boolean' ? props.isFlipped : state.isFlipped
+      isFlipped: typeof props.isFlipped === 'boolean' ? props.isFlipped : state.isFlipped,
     };
   }
 
   toggle = () => {
     this.setState({
-      isFlipped: !this.state.isFlipped
+      isFlipped: !this.state.isFlipped,
     });
   }
 
   handleFooterDotClick = (newCardIndex, event) => {
     this.setState({
-      isFlipped: newCardIndex === 0
+      isFlipped: newCardIndex === 0,
     });
   }
 
   handleHoverOn = (event) => {
     this.setState({
-      isFlipped: true
+      isFlipped: true,
     });
     this.props.onMouseEnter(event);
   }
@@ -39,55 +40,62 @@ export default class Flippy extends React.Component {
   handleTouchStart = (event) => {
     this.setState({
       isFlipped: true,
-      isTouchDevice: true
+      isTouchDevice: true,
     });
     this.props.onTouchStart(event);
   }
 
   handleTouchEnd = (event) => {
     this.setState({
-      isFlipped: false
+      isFlipped: false,
     });
     this.props.onTouchEnd(event);
   }
 
   handleHoverOff = (event) => {
     this.setState({
-      isFlipped: false
+      isFlipped: false,
     });
     this.props.onMouseLeave(event);
   }
 
   render() {
-    const { children, style, flipDirection, flipOnHover, flipOnClick } = this.props;
+    const {
+      className, children, style, flipDirection, flipOnHover, flipOnClick,
+    } = this.props;
     const { isFlipped, activeCardIndex, isTouchDevice } = this.state;
-    const methods = !!flipOnHover ? {
+    const methods = flipOnHover ? {
       onMouseEnter: this.handleHoverOn,
       onMouseLeave: this.handleHoverOff,
       onTouchStart: this.handleTouchStart,
-      onTouchEnd: this.handleTouchEnd
+      onTouchEnd: this.handleTouchEnd,
     } : flipOnClick ? {
-      onClick: this.toggle
+      onClick: this.toggle,
     } : {};
     return (
       <div
-        className="flippy-container"
+        className={cx(
+          'flippy-container',
+          className,
+        )}
         style={{
-          ...style
+          ...style,
         }}
         {...methods}
       >
-      <div className={`flippy-cardContainer-wrapper ${flipDirection}`}>
-        <div
-          className={`flippy-cardContainer ${isFlipped ? 'isActive' : ''} ${isTouchDevice ? 'istouchdevice' : ''}`}
-        >
-          {children}
-        </div>
-          {this.props.showNavigation && <FlippyFooter
+        <div className={`flippy-cardContainer-wrapper ${flipDirection}`}>
+          <div
+            className={`flippy-cardContainer ${isFlipped ? 'isActive' : ''} ${isTouchDevice ? 'istouchdevice' : ''}`}
+          >
+            {children}
+          </div>
+          {this.props.showNavigation && (
+          <FlippyFooter
             onDotClick={this.handleFooterDotClick}
             activeCardIndex={activeCardIndex}
             cards={this.props.children}
-          />}
+          />
+          )}
         </div>
       </div>
     );
@@ -104,5 +112,5 @@ Flippy.defaultProps = {
   onMouseLeave: () => {},
   onTouchStart: () => {},
   onTouchEnd: () => {},
-  onClick: () => {}
+  onClick: () => {},
 };
