@@ -23,20 +23,39 @@ const DELETE_FLIP_CARD = gql`
   }
 `;
 
+const GET_FLIP_CARDS = gql`
+  query allFlipCards {
+    allFlipCards {
+      id
+      front
+      back
+      description
+      createdAt
+    }
+    _allFlipCardsMeta {
+      count
+    }
+  }
+`;
+
 function FlipCard({ card }) {
   const [deleteFlipCard, { error }] = useMutation(
     DELETE_FLIP_CARD,
     {
       // After a new one is added, update the cache to include the newly added
       // flip card.
-      // update(cache, { data: { createFlipCard } }) {
-      //   const { allFlipCards } = cache.readQuery({ query: GET_FLIP_CARDS });
+      update(cache) {
+        const { allFlipCards } = cache.readQuery({ query: GET_FLIP_CARDS });
 
-      //   cache.writeQuery({
-      //     query: GET_FLIP_CARDS,
-      //     data: { allFlipCards: allFlipCards.concat([createFlipCard]) },
-      //   });
-      // },
+        cache.writeQuery({
+          query: GET_FLIP_CARDS,
+          data: {
+            allFlipCards: allFlipCards.filter(
+              (flipCard) => flipCard.id !== card.id,
+            ),
+          },
+        });
+      },
     },
   );
 

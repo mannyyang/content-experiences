@@ -3,11 +3,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import cx from 'classnames';
 import { Flex } from 'reflexbox';
-// import {
-//   Button, Form, FormGroup, Label, Input,
-// } from 'reactstrap';
-import FlipCard from 'components/FlipCard';
-import Flippy, { FrontSide, BackSide } from '../Flippy';
+import FlipCard from '../FlipCard';
 
 import styles from './FlipCardGrid.module.scss';
 
