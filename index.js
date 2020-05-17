@@ -4,7 +4,6 @@ const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
 const { NextApp } = require('@keystonejs/app-next');
 const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
-const constants = require('./constants');
 const TodoSchema = require('./lists/Todo.js');
 const UserSchema = require('./lists/User.js');
 const FlipCardSchema = require('./lists/FlipCard.js');
