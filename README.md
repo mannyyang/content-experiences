@@ -1,6 +1,6 @@
 # Content Experiences
 
-Tech Stack
+**Tech Stack**
 
 - Keystone.js as headless CMS (https://www.keystonejs.com/)
   - GraphQL as the backend (apollo used for client)
@@ -22,10 +22,10 @@ Keystone.js uses `yarn` as its package manager.
 
 Once project is running, these links should be available: 
 
-✔ Keystone instance is ready at http://localhost:4000 🚀
-🔗 Keystone Admin UI:   http://localhost:4000/admin
-🔗 GraphQL Playground:  http://localhost:4000/admin/graphiql
-🔗 GraphQL API:         http://localhost:4000/admin/api
+- ✔ Keystone instance is ready at http://localhost:4000 🚀
+- 🔗 Keystone Admin UI:   http://localhost:4000/admin
+- 🔗 GraphQL Playground:  http://localhost:4000/admin/graphiql
+- 🔗 GraphQL API:         http://localhost:4000/admin/api
 
 Currently, http://localhost:4000/flip-cards is where the main UI is. This will most likely change in the future.
 
