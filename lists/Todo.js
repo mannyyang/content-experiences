@@ -1,5 +1,6 @@
-const { Text, CalendarDay, Checkbox, Relationship } = require('@keystonejs/fields');
-const constants = require('../constants');
+const {
+  Text, CalendarDay, Checkbox, Relationship,
+} = require('@keystonejs/fields');
 
 module.exports = {
   fields: {

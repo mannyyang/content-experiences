@@ -1,3 +1,7 @@
+// Enable use of environment variables for aws keys.
+require('dotenv').config();
+
+const bodyParser = require('body-parser');
 const { Keystone } = require('@keystonejs/keystone');
 const { PasswordAuthStrategy } = require('@keystonejs/auth-password');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
@@ -7,6 +11,7 @@ const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
 const TodoSchema = require('./lists/Todo.js');
 const UserSchema = require('./lists/User.js');
 const FlipCardSchema = require('./lists/FlipCard.js');
+const uploadRoute = require('./custom-routes/upload');
 
 const PROJECT_NAME = 'content-experiences';
 const adapterConfig = {
@@ -40,4 +45,10 @@ module.exports = {
     }),
     new NextApp({ dir: './client' }),
   ],
+  // https://www.keystonejs.com/guides/custom-server/#you-may-not-need-a-custom-server
+  configureExpress: (app) => {
+    app.use(bodyParser.json());
+
+    uploadRoute(app);
+  },
 };

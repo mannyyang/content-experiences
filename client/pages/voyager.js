@@ -1,7 +1,5 @@
-import React, {
-  useEffect,
-  useState,
-} from 'react';
+/* eslint-disable react/jsx-filename-extension */
+import React from 'react';
 import fetch from 'isomorphic-fetch';
 import dynamic from 'next/dynamic';
 
