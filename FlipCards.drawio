@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-05-23T23:04:46.842Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36" etag="HQIcZHe3w0qR-KqTw7cv" version="13.1.2" type="github">
+<mxfile host="app.diagrams.net" modified="2020-05-23T23:42:34.596Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36" etag="P9YjlKZDOUiZAZf2oJqc" version="13.1.2" type="github">
   <diagram id="G7RjMXs0h80magAzpFlr" name="Page-1">
     <mxGraphModel dx="1368" dy="1323" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -10,8 +10,8 @@
         <mxCell id="FFj3fwUwZzZwgMs1BxMk-5" value="Create New Flip Card" style="text;html=1;resizable=0;autosize=1;align=left;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;fontSize=36;" parent="1" vertex="1">
           <mxGeometry x="80" y="110" width="360" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="Julk4QLOyHJ78fn3IDda-4" value="" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;align=left;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;connectable=1;" vertex="1" parent="1">
-          <mxGeometry x="80" y="280" width="440" height="290" as="geometry" />
+        <mxCell id="Julk4QLOyHJ78fn3IDda-4" value="PREVIEW OF FRONT CARD" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;align=center;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;connectable=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="260" width="440" height="290" as="geometry" />
         </mxCell>
         <mxCell id="Julk4QLOyHJ78fn3IDda-74" value="Title" style="fillColor=none;strokeColor=none;align=left;fontSize=14;" vertex="1" parent="1">
           <mxGeometry width="260" height="40" relative="1" as="geometry">
@@ -40,8 +40,8 @@
         <mxCell id="Julk4QLOyHJ78fn3IDda-236" value="Front" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;fontSize=28;" vertex="1" parent="1">
           <mxGeometry x="110" y="310" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="Julk4QLOyHJ78fn3IDda-237" value="" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;align=left;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;connectable=1;" vertex="1" parent="1">
-          <mxGeometry x="80" y="600" width="440" height="290" as="geometry" />
+        <mxCell id="Julk4QLOyHJ78fn3IDda-237" value="PREVIEW OF BACK CARD" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;align=center;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;connectable=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="580" width="440" height="290" as="geometry" />
         </mxCell>
         <mxCell id="Julk4QLOyHJ78fn3IDda-238" value="Title" style="fillColor=none;strokeColor=none;align=left;fontSize=14;" vertex="1" parent="1">
           <mxGeometry width="260" height="40" relative="1" as="geometry">
