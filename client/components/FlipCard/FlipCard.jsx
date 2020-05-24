@@ -28,7 +28,9 @@ const GET_FLIP_CARDS = gql`
     allFlipCards {
       id
       front
+      frontTitle
       back
+      backTitle
       description
       createdAt
     }
@@ -87,12 +89,24 @@ function FlipCard({ card }) {
             backgroundColor: '#41669d',
           }}
         >
+          old:
+          {' '}
           {card.front}
+          <br />
+          new:
+          {' '}
+          {card.frontTitle}
         </FrontSide>
         <BackSide
           style={{ backgroundColor: '#175852' }}
         >
+          old:
+          {' '}
           {card.back}
+          <br />
+          new:
+          {' '}
+          {card.backTitle}
         </BackSide>
       </Flippy>
     </div>

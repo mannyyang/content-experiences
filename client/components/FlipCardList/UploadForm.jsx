@@ -38,7 +38,7 @@ const UploadFrom = () => {
       </div> */}
       <br />
       <div>
-        <button>Upload</button>
+        <button type="button">Upload</button>
       </div>
       {imgUrl && <img src={imgUrl} alt="img" />}
     </form>

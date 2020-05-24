@@ -5,11 +5,25 @@ const {
 
 module.exports = {
   fields: {
-    // existing fields
+    // old field names (keeping around for backwards support, these should be
+    // removed later)
     front: {
       type: Text,
     },
     back: {
+      type: Text,
+    },
+    // updated
+    frontTitle: {
+      type: Text,
+    },
+    backTitle: {
+      type: Text,
+    },
+    frontImage: {
+      type: Text,
+    },
+    backImage: {
       type: Text,
     },
     description: {

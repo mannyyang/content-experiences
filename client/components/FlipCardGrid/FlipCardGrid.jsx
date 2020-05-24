@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import cx from 'classnames';
 import { Flex } from 'reflexbox';
 import FlipCard from '../FlipCard';
-
-import styles from './FlipCardGrid.module.scss';
 
 const GET_FLIP_CARDS = gql`
   query allFlipCards {
     allFlipCards {
       id
       front
+      frontTitle
       back
+      backTitle
       description
       createdAt
     }
