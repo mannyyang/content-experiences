@@ -1,0 +1,81 @@
+<mxfile host="app.diagrams.net" modified="2020-05-23T23:42:34.596Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36" etag="P9YjlKZDOUiZAZf2oJqc" version="13.1.2" type="github">
+  <diagram id="G7RjMXs0h80magAzpFlr" name="Page-1">
+    <mxGraphModel dx="1368" dy="1323" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="FFj3fwUwZzZwgMs1BxMk-2" value="Window Title" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.window;align=left;verticalAlign=top;spacingLeft=8;strokeColor2=#008cff;strokeColor3=#c4c4c4;fontColor=#666666;mainText=;fontSize=17;labelBackgroundColor=none;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;connectable=0;" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="1600" height="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="FFj3fwUwZzZwgMs1BxMk-5" value="Create New Flip Card" style="text;html=1;resizable=0;autosize=1;align=left;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;fontSize=36;" parent="1" vertex="1">
+          <mxGeometry x="80" y="110" width="360" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-4" value="PREVIEW OF FRONT CARD" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;align=center;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;connectable=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="260" width="440" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-74" value="Title" style="fillColor=none;strokeColor=none;align=left;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry width="260" height="40" relative="1" as="geometry">
+            <mxPoint x="110" y="370" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-75" value="the flip card title, typically a question." style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;fillColor=none;strokeColor=#999999;align=left;spacing=15;fontSize=14;fontColor=#6C767D;" vertex="1" parent="1">
+          <mxGeometry width="380" height="30" relative="1" as="geometry">
+            <mxPoint x="110" y="410" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-80" value="Create New Card" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;fillColor=#0085FC;strokeColor=none;align=center;fontSize=14;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry width="160" height="40" relative="1" as="geometry">
+            <mxPoint x="360" y="950" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-157" value="Background Image" style="fillColor=none;strokeColor=none;align=left;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="110" y="465" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-158" value="Choose File" style="fillColor=#FEFEFE;strokeColor=#AAAAAA;fontSize=14;gradientColor=#F0F0F0;align=left;" vertex="1" parent="1">
+          <mxGeometry x="110" y="505" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-159" value="No file chosen" style="fillColor=none;strokeColor=none;align=left;fontSize=14;spacing=5;" vertex="1" parent="1">
+          <mxGeometry x="200" y="505" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-236" value="Front" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;fontSize=28;" vertex="1" parent="1">
+          <mxGeometry x="110" y="310" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-237" value="PREVIEW OF BACK CARD" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;align=center;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;connectable=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="580" width="440" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-238" value="Title" style="fillColor=none;strokeColor=none;align=left;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry width="260" height="40" relative="1" as="geometry">
+            <mxPoint x="110" y="690" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-239" value="Flip card title for back, typically an answer." style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;fillColor=none;strokeColor=#999999;align=left;spacing=15;fontSize=14;fontColor=#6C767D;" vertex="1" parent="1">
+          <mxGeometry width="380" height="30" relative="1" as="geometry">
+            <mxPoint x="110" y="730" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-240" value="Background Image" style="fillColor=none;strokeColor=none;align=left;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="110" y="785" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-241" value="Choose File" style="fillColor=#FEFEFE;strokeColor=#AAAAAA;fontSize=14;gradientColor=#F0F0F0;align=left;" vertex="1" parent="1">
+          <mxGeometry x="110" y="825" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-242" value="No file chosen" style="fillColor=none;strokeColor=none;align=left;fontSize=14;spacing=5;" vertex="1" parent="1">
+          <mxGeometry x="200" y="825" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-243" value="Back" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;fontSize=28;" vertex="1" parent="1">
+          <mxGeometry x="110" y="630" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-245" value="Flip Card Name" style="fillColor=none;strokeColor=none;align=left;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry width="260" height="40" relative="1" as="geometry">
+            <mxPoint x="80" y="170" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Julk4QLOyHJ78fn3IDda-246" value="Name" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;fillColor=none;strokeColor=#999999;align=left;spacing=15;fontSize=14;fontColor=#6C767D;" vertex="1" parent="1">
+          <mxGeometry width="440" height="30" relative="1" as="geometry">
+            <mxPoint x="80" y="210" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
