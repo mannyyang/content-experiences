@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useMutation } from '@apollo/react-hooks'
-import { gql } from 'apollo-boost'
+import React, { useEffect, useState } from 'react';
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 // import cx from 'classnames';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
-import FlipCardCreateFormPreviewCard from '../FlipCardCreateFormPreviewCard'
+import {
+  Button, Form, FormGroup, Label, Input,
+} from 'reactstrap';
+import FlipCardCreateFormPreviewCard from '../FlipCardCreateFormPreviewCard';
 
 const GET_FLIP_CARDS = gql`
   query allFlipCards {
@@ -18,7 +20,7 @@ const GET_FLIP_CARDS = gql`
       count
     }
   }
-`
+`;
 
 const ADD_FLIP_CARD = gql`
   mutation AddFlipCard(
@@ -44,7 +46,7 @@ const ADD_FLIP_CARD = gql`
       createdAt
     }
   }
-`
+`;
 
 function FlipCardCreateForm() {
   const [formVals, setFormVals] = useState({
@@ -52,23 +54,21 @@ function FlipCardCreateForm() {
     backTitle: '',
     frontImage: null,
     backImage: null,
-  })
-  // console.log(formVals)
-
+  });
   const [addFlipCard, { error }] = useMutation(ADD_FLIP_CARD, {
     // After a new one is added, update the cache to include the newly added
     // flip card.
     update(cache, { data: { createFlipCard } }) {
       const { allFlipCards } = cache.readQuery({
         query: GET_FLIP_CARDS,
-      })
+      });
 
       cache.writeQuery({
         query: GET_FLIP_CARDS,
         data: { allFlipCards: allFlipCards.concat([createFlipCard]) },
-      })
+      });
     },
-  })
+  });
 
   const handleClick = () => {
     addFlipCard({
@@ -77,61 +77,61 @@ function FlipCardCreateForm() {
         backTitle: formVals.backTitle,
         description: '',
       },
-    })
-  }
+    });
+  };
 
-  const handleSubmit = e => {
-    e.preventDefault()
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setFormVals({
       ...formVals,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
-  const handleChangeImage = e => {
+  const handleChangeImage = (e) => {
     if (e.target.files[0]) {
       setFormVals({
         ...formVals,
         [e.target.name]: e.target.files[0],
-      })
+      });
     } else {
       setFormVals({
         ...formVals,
         [e.target.name]: null,
-      })
+      });
     }
-  }
+  };
 
   const uploadImage = (image, type) => {
-    const data = new FormData()
-    data.append('file', image)
+    const data = new FormData();
+    data.append('file', image);
 
     fetch('/upload', {
       method: 'POST',
       body: data,
     })
-      .then(response => response.json())
-      .then(body => {
+      .then((response) => response.json())
+      .then((body) => {
         setFormVals({
           ...formVals,
           [type]: body.location,
-        })
-        console.log(formVals)
+        });
+        console.log(formVals);
       })
-      .catch(err => {
-        console.error(err)
-      })
-  }
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   useEffect(() => {
     if (error) {
       // eslint-disable-next-line no-console
-      console.log(error)
+      console.log(error);
     }
-  }, [error])
+  }, [error]);
 
   return (
     <div
@@ -158,9 +158,7 @@ function FlipCardCreateForm() {
           />
           <button
             type="button"
-            onClick={() =>
-              uploadImage(formVals.frontImage, 'frontImage')
-            }
+            onClick={() => uploadImage(formVals.frontImage, 'frontImage')}
           >
             Upload to preview
           </button>
@@ -182,9 +180,7 @@ function FlipCardCreateForm() {
           />
           <button
             type="button"
-            onClick={() =>
-              uploadImage(formVals.backImage, 'backImage')
-            }
+            onClick={() => uploadImage(formVals.backImage, 'backImage')}
           >
             Upload to preview
           </button>
@@ -212,7 +208,7 @@ function FlipCardCreateForm() {
         />
       </div>
     </div>
-  )
+  );
 }
 
-export default FlipCardCreateForm
+export default FlipCardCreateForm;
