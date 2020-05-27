@@ -34,7 +34,10 @@ const UploadFrom = () => {
         <input name="file" ref={(ref) => { setUpdateInput(ref); }} type="file" />
       </div>
       {/* <div>
-        <input ref={(ref) => { this.fileName = ref; }} type="text" placeholder="Enter the desired name of file" />
+        <input
+        ref={(ref) => { this.fileName = ref; }}
+        type="text"
+        placeholder="Enter the desired name of file" />
       </div> */}
       <br />
       <div>
