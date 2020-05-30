@@ -2,9 +2,11 @@
 import React from 'react';
 import withData from '../../lib/apollo';
 import FlipCardList from '../../components/FlipCardList';
+import Layout from '../../components/Layout';
+// import Layout from '../../components/paperbase/Paperbase';
 
 export default withData(() => (
-  <div className="container">
+  <Layout>
     <FlipCardList />
-  </div>
+  </Layout>
 ));
