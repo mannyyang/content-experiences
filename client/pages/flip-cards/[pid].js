@@ -7,9 +7,8 @@ import Layout from '../../components/Layout';
 
 export default withData(() => {
   const router = useRouter();
-  const { pid } = router.query;
 
-  console.log(pid);
+  console.log(router?.query);
 
   return (
     <Layout title="All Flip Cards">
