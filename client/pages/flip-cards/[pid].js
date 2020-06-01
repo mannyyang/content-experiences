@@ -2,7 +2,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import withData from '../../lib/apollo';
-import FlipCardList from '../../components/FlipCardList';
+import FlipCardSingle from '../../components/FlipCardSingle';
 import Layout from '../../components/Layout';
 
 export default withData(() => {
@@ -12,7 +12,7 @@ export default withData(() => {
 
   return (
     <Layout title="All Flip Cards">
-      <FlipCardList />
+      <FlipCardSingle />
     </Layout>
   );
 });
