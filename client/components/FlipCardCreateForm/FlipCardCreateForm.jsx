@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
 import TextField from '@material-ui/core/TextField';
-import FlipCardCreateFormPreviewCard from '../FlipCardCreateFormPreviewCard';
+import FlipCard from '../FlipCard';
 
 const GET_FLIP_CARDS = gql`
   query allFlipCards {
@@ -143,10 +143,14 @@ function FlipCardCreateForm() {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <FlipCardCreateFormPreviewCard
-              title={formVals.frontTitle}
-              image={formVals.frontImage}
-              type="front"
+            <FlipCard
+              card={{
+                frontTitle: formVals.frontTitle,
+                backTitle: formVals.backTitle,
+                frontImage: formVals.frontImage,
+                backImage: formVals.backImage,
+              }}
+              isFlipped={false}
             />
           </Grid>
         </Grid>
@@ -171,10 +175,14 @@ function FlipCardCreateForm() {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <FlipCardCreateFormPreviewCard
-              title={formVals.backTitle}
-              image={formVals.backImage}
-              type="back"
+            <FlipCard
+              card={{
+                frontTitle: formVals.frontTitle,
+                backTitle: formVals.backTitle,
+                frontImage: formVals.frontImage,
+                backImage: formVals.backImage,
+              }}
+              isFlipped
             />
           </Grid>
         </Grid>

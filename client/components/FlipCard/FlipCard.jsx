@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/react-hooks';
@@ -37,7 +38,11 @@ const GET_FLIP_CARDS = gql`
   }
 `;
 
-function FlipCard({ card }) {
+function FlipCard({
+  card,
+  hasActions,
+  ...rest
+}) {
   const [deleteFlipCard, { error }] = useMutation(
     DELETE_FLIP_CARD,
     {
@@ -74,17 +79,20 @@ function FlipCard({ card }) {
       key={card.id}
       className={cx(styles.flipCard, 'p-2')}
     >
-      <button
-        onClick={() => handleClick(card.id)}
-        type="button"
-      >
-        Delete
-      </button>
+      {hasActions && (
+        <button
+          onClick={() => handleClick(card.id)}
+          type="button"
+        >
+          Delete
+        </button>
+      )}
       <Flippy
         flipOnHover={false} // default false
         flipOnClick // default false
         flipDirection="horizontal" // horizontal or vertical
         style={{ width: '300px', height: '300px' }}
+        {...rest}
       >
         <FrontSide
           style={{

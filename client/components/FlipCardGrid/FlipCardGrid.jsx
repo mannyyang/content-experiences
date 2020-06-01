@@ -46,6 +46,7 @@ function FlipCardGrid() {
           <FlipCard
             key={card.id}
             card={card}
+            hasActions
           />
         ))
       }
