@@ -8,10 +8,10 @@ const GET_FLIP_CARDS = gql`
   query allFlipCards {
     allFlipCards {
       id
-      front
       frontTitle
-      back
+      frontImage
       backTitle
+      backImage
       description
       createdAt
     }

@@ -42,7 +42,9 @@ function Paperbase(props) {
   const {
     classes,
     children,
+    title,
   } = props;
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -66,7 +68,10 @@ function Paperbase(props) {
         </Hidden>
       </nav>
       <div className={classes.app}>
-        <Header onDrawerToggle={handleDrawerToggle} />
+        <Header
+          onDrawerToggle={handleDrawerToggle}
+          title={title}
+        />
         <main className={classes.main}>
           <Content>
             {children}
@@ -83,6 +88,7 @@ function Paperbase(props) {
 Paperbase.propTypes = {
   classes: PropTypes.object.isRequired,
   children: PropTypes.node,
+  title: PropTypes.string.isRequired,
 };
 
 Paperbase.defaultProps = {

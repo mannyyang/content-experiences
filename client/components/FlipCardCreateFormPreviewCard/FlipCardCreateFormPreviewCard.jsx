@@ -1,23 +1,33 @@
-import React from 'react'
+import React from 'react';
 
-function FlipCardCreateFormPreviewCard({ title, image, type }) {
+function FlipCardCreateFormPreviewCard({
+  title,
+  image,
+  type,
+}) {
   return (
     <div
       style={{
-        height: '35vh',
-        width: '35vw',
+        position: 'relative',
+        height: '100%',
+        width: '100%',
         border: '1px solid black',
         textAlign: 'center',
       }}
     >
       {title === '' && image === null && (
-        <div>Preview of {type} card</div>
+        <div>
+          Preview of
+          {type}
+          {' '}
+          card
+        </div>
       )}
       <div
         style={{
           position: 'absolute',
-          height: '35vh',
-          width: '35vw',
+          height: '100%',
+          width: '100%',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -25,7 +35,7 @@ function FlipCardCreateFormPreviewCard({ title, image, type }) {
       >
         {title}
       </div>
-      {image && (
+      {typeof image === 'string' && (
         <img
           src={image}
           alt="background"
@@ -38,7 +48,7 @@ function FlipCardCreateFormPreviewCard({ title, image, type }) {
         />
       )}
     </div>
-  )
+  );
 }
 
-export default FlipCardCreateFormPreviewCard
+export default FlipCardCreateFormPreviewCard;

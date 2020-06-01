@@ -2,17 +2,18 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
+// import SearchIcon from '@material-ui/icons/Search';
 import RefreshIcon from '@material-ui/icons/Refresh';
 
 const styles = (theme) => ({
@@ -47,22 +48,28 @@ function Content(props) {
         <Toolbar>
           <Grid container spacing={2} alignItems="center">
             <Grid item>
-              <SearchIcon className={classes.block} color="inherit" />
+              {/* <SearchIcon className={classes.block} color="inherit" /> */}
             </Grid>
             <Grid item xs>
-              <TextField
+              {/* <TextField
                 fullWidth
                 placeholder="Search by email address, phone number, or user UID"
                 InputProps={{
                   disableUnderline: true,
                   className: classes.searchInput,
                 }}
-              />
+              /> */}
             </Grid>
             <Grid item>
-              <Button variant="contained" color="primary" className={classes.addUser}>
-                Add user
-              </Button>
+              <Link href="/flip-cards/new">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.addUser}
+                >
+                  Add Flip Card
+                </Button>
+              </Link>
               <Tooltip title="Reload">
                 <IconButton>
                   <RefreshIcon className={classes.block} color="inherit" />
@@ -74,9 +81,9 @@ function Content(props) {
       </AppBar>
       <div className={classes.contentWrapper}>
         {children}
-        <Typography color="textSecondary" align="center">
+        {/* <Typography color="textSecondary" align="center">
           No users for this project yet
-        </Typography>
+        </Typography> */}
       </div>
     </Paper>
   );
