@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 // import cx from 'classnames';
-import {
-  Button, Form, FormGroup, Label, Input,
-} from 'reactstrap';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Input from '@material-ui/core/Input';
+import TextField from '@material-ui/core/TextField';
 import FlipCardCreateFormPreviewCard from '../FlipCardCreateFormPreviewCard';
 
 const GET_FLIP_CARDS = gql`
@@ -55,6 +57,7 @@ function FlipCardCreateForm() {
     frontImage: null,
     backImage: null,
   });
+
   const [addFlipCard, { error }] = useMutation(ADD_FLIP_CARD, {
     // After a new one is added, update the cache to include the newly added
     // flip card.
@@ -75,13 +78,11 @@ function FlipCardCreateForm() {
       variables: {
         frontTitle: formVals.frontTitle,
         backTitle: formVals.backTitle,
+        frontImage: formVals.frontImage,
+        backImage: formVals.backImage,
         description: '',
       },
     });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
   };
 
   const handleChange = (e) => {
@@ -91,39 +92,26 @@ function FlipCardCreateForm() {
     });
   };
 
-  const handleChangeImage = (e) => {
+  const handleChangeImage = (e, type) => {
     if (e.target.files[0]) {
-      setFormVals({
-        ...formVals,
-        [e.target.name]: e.target.files[0],
-      });
-    } else {
-      setFormVals({
-        ...formVals,
-        [e.target.name]: null,
-      });
-    }
-  };
+      const data = new FormData();
+      data.append('file', e.target.files[0]);
 
-  const uploadImage = (image, type) => {
-    const data = new FormData();
-    data.append('file', image);
-
-    fetch('/upload', {
-      method: 'POST',
-      body: data,
-    })
-      .then((response) => response.json())
-      .then((body) => {
-        setFormVals({
-          ...formVals,
-          [type]: body.location,
-        });
-        console.log(formVals);
+      fetch('/upload', {
+        method: 'POST',
+        body: data,
       })
-      .catch((err) => {
-        console.error(err);
-      });
+        .then((response) => response.json())
+        .then((body) => {
+          setFormVals({
+            ...formVals,
+            [type]: body.location,
+          });
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
   };
 
   useEffect(() => {
@@ -134,79 +122,64 @@ function FlipCardCreateForm() {
   }, [error]);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-around',
-      }}
-    >
-      <Form onSubmit={handleSubmit}>
-        <FormGroup>
-          <Label for="frontTitle">Front</Label>
-          <Input
-            name="frontTitle"
-            id="frontTitle"
-            placeholder="the flip card title - typically a question"
-            onChange={handleChange}
-            value={formVals.frontTitle}
-          />
-          <Label for="frontImage">Background Image</Label>
-          <Input
-            name="frontImage"
-            onChange={handleChangeImage}
-            type="file"
-          />
-          <button
-            type="button"
-            onClick={() => uploadImage(formVals.frontImage, 'frontImage')}
-          >
-            Upload to preview
-          </button>
-        </FormGroup>
-        <FormGroup>
-          <Label for="backTitle">Back</Label>
-          <Input
-            name="backTitle"
-            id="backTitle"
-            placeholder="the flip card title - typically an answer"
-            onChange={handleChange}
-            value={formVals.backTitle}
-          />
-          <Label for="backImage">Background Image</Label>
-          <Input
-            name="backImage"
-            onChange={handleChangeImage}
-            type="file"
-          />
-          <button
-            type="button"
-            onClick={() => uploadImage(formVals.backImage, 'backImage')}
-          >
-            Upload to preview
-          </button>
-        </FormGroup>
-        <Button onClick={handleClick}>Add Flip Card</Button>
-      </Form>
-      <div
-        style={{
-          flexDirection: 'row',
-        }}
-      >
-        <FlipCardCreateFormPreviewCard
-          title={formVals.frontTitle}
-          image={
-            formVals.frontImage !== null ? formVals.frontImage : null
-          }
-          type="front"
-        />
-        <FlipCardCreateFormPreviewCard
-          title={formVals.backTitle}
-          image={
-            formVals.backImage !== null ? formVals.backImage : null
-          }
-          type="back"
-        />
+    <div>
+      <div>
+        <Typography variant="h6" gutterBottom>
+          Front Side
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              name="frontTitle"
+              fullWidth
+              label="Title"
+              onChange={handleChange}
+              value={formVals.frontTitle}
+            />
+            <Input
+              name="frontImage"
+              onChange={(e) => handleChangeImage(e, 'frontImage')}
+              type="file"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FlipCardCreateFormPreviewCard
+              title={formVals.frontTitle}
+              image={formVals.frontImage}
+              type="front"
+            />
+          </Grid>
+        </Grid>
       </div>
+      <div>
+        <Typography variant="h6" gutterBottom>
+          Back Side
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              name="backTitle"
+              fullWidth
+              label="Title"
+              onChange={handleChange}
+              value={formVals.backTitle}
+            />
+            <Input
+              name="backImage"
+              onChange={(e) => handleChangeImage(e, 'backImage')}
+              type="file"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FlipCardCreateFormPreviewCard
+              title={formVals.backTitle}
+              image={formVals.backImage}
+              type="back"
+            />
+          </Grid>
+        </Grid>
+      </div>
+      <Button onClick={handleClick}>Add Flip Card</Button>
     </div>
   );
 }

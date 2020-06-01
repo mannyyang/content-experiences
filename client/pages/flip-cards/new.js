@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import withData from '../../lib/apollo';
+import Layout from '../../components/Layout';
 import FlipCardCreateForm from '../../components/FlipCardCreateForm';
 
 export default withData(() => (
-  <div className="container">
-    <div className="title">Create New Flip Card</div>
+  <Layout title="Create New Flip Card">
     <FlipCardCreateForm />
-  </div>
+  </Layout>
 ));

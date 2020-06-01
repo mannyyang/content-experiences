@@ -6,7 +6,6 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../theme';
 
-import 'bootstrap/dist/css/bootstrap.css';
 import 'graphql-voyager/dist/voyager.css';
 import '../components/Flippy/styles.css';
 

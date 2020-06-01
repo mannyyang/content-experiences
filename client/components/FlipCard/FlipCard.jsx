@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import cx from 'classnames';
-import {
-  Button,
-} from 'reactstrap';
 // eslint-disable-next-line import/no-named-as-default
 import Flippy, { FrontSide, BackSide } from '../Flippy';
 
@@ -77,7 +74,12 @@ function FlipCard({ card }) {
       key={card.id}
       className={cx(styles.flipCard, 'p-2')}
     >
-      <Button onClick={() => handleClick(card.id)}>Delete</Button>
+      <button
+        onClick={() => handleClick(card.id)}
+        type="button"
+      >
+        Delete
+      </button>
       <Flippy
         flipOnHover={false} // default false
         flipOnClick // default false
@@ -87,25 +89,23 @@ function FlipCard({ card }) {
         <FrontSide
           style={{
             backgroundColor: '#41669d',
+            backgroundImage: `url('${card.frontImage}')`,
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
           }}
         >
-          old:
-          {' '}
-          {card.front}
-          <br />
-          new:
-          {' '}
           {card.frontTitle}
         </FrontSide>
         <BackSide
-          style={{ backgroundColor: '#175852' }}
+          style={{
+            backgroundColor: '#175852',
+            backgroundImage: `url('${card.backImage}')`,
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+          }}
         >
-          old:
-          {' '}
-          {card.back}
-          <br />
-          new:
-          {' '}
           {card.backTitle}
         </BackSide>
       </Flippy>
