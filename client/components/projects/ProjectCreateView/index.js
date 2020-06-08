@@ -1,7 +1,7 @@
+/* eslint-disable react/require-default-props */
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Link as RouterLink } from 'react-router-dom';
 import {
   Avatar,
   Box,
@@ -20,54 +20,41 @@ import {
   Typography,
   makeStyles,
   withStyles,
-  colors
+  colors,
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import {
   User as UserIcon,
   Star as StarIcon,
   Briefcase as BriefcaseIcon,
-  File as FileIcon
+  File as FileIcon,
 } from 'react-feather';
-import Page from 'src/components/Page';
-import UserDetails from './UserDetails';
 import ProjectDetails from './ProjectDetails';
-import ProjectDescription from './ProjectDescription';
 
 const steps = [
   {
     label: 'User Details',
-    icon: UserIcon
+    icon: UserIcon,
   },
   {
     label: 'Project Details',
-    icon: BriefcaseIcon
+    icon: BriefcaseIcon,
   },
   {
     label: 'Project Description',
-    icon: FileIcon
-  }
-];
-
-const CustomStepConnector = withStyles((theme) => ({
-  vertical: {
-    marginLeft: 19,
-    padding: 0,
+    icon: FileIcon,
   },
-  line: {
-    borderColor: theme.palette.divider
-  }
-}))(StepConnector);
+];
 
 const useCustomStepIconStyles = makeStyles((theme) => ({
   root: {},
   active: {
     backgroundColor: theme.palette.secondary.main,
-    boxShadow: theme.shadows[10]
+    boxShadow: theme.shadows[10],
   },
   completed: {
     backgroundColor: theme.palette.secondary.main,
-  }
+  },
 }));
 
 function CustomStepIcon({ active, completed, icon }) {
@@ -90,7 +77,7 @@ function CustomStepIcon({ active, completed, icon }) {
 CustomStepIcon.propTypes = {
   active: PropTypes.bool,
   completed: PropTypes.bool,
-  icon: PropTypes.number
+  icon: PropTypes.number,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -98,11 +85,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
+    paddingBottom: theme.spacing(3),
   },
   avatar: {
-    backgroundColor: colors.red[600]
-  }
+    backgroundColor: colors.red[600],
+  },
 }));
 
 function ProjectCreateView() {
@@ -110,20 +97,8 @@ function ProjectCreateView() {
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState(false);
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleComplete = () => {
-    setCompleted(true);
-  };
-
   return (
-    <Page
+    <div
       className={classes.root}
       title="Project Create"
     >
@@ -137,7 +112,6 @@ function ProjectCreateView() {
               variant="body1"
               color="inherit"
               to="/app"
-              component={RouterLink}
             >
               Dashboard
             </Link>
@@ -155,109 +129,19 @@ function ProjectCreateView() {
             Create Wizard &amp; Process
           </Typography>
         </Box>
-        {!completed ? (
-          <Paper>
-            <Grid container>
-              <Grid
-                item
-                xs={12}
-                md={3}
-              >
-                <Stepper
-                  activeStep={activeStep}
-                  connector={<CustomStepConnector />}
-                  orientation="vertical"
-                  component={Box}
-                  bgcolor="transparent"
-                >
-                  {steps.map((step) => (
-                    <Step key={step.label}>
-                      <StepLabel StepIconComponent={CustomStepIcon}>
-                        {step.label}
-                      </StepLabel>
-                    </Step>
-                  ))}
-                </Stepper>
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={9}
-              >
-                <Box p={3}>
-                  {activeStep === 0 && (
-                    <UserDetails onNext={handleNext} />
-                  )}
-                  {activeStep === 1 && (
-                    <ProjectDetails
-                      onBack={handleBack}
-                      onNext={handleNext}
-                    />
-                  )}
-                  {activeStep === 2 && (
-                    <ProjectDescription
-                      onBack={handleBack}
-                      onComplete={handleComplete}
-                    />
-                  )}
-                </Box>
-              </Grid>
-            </Grid>
-          </Paper>
-        ) : (
-          <Card>
-            <CardContent>
-              <Box
-                maxWidth={450}
-                mx="auto"
-              >
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                >
-                  <Avatar className={classes.avatar}>
-                    <StarIcon />
-                  </Avatar>
-                </Box>
-                <Box mt={2}>
-                  <Typography
-                    variant="h3"
-                    color="textPrimary"
-                    align="center"
-                  >
-                    You are all done!
-                  </Typography>
-                </Box>
-                <Box mt={2}>
-                  <Typography
-                    variant="subtitle1"
-                    color="textSecondary"
-                    align="center"
-                  >
-                    Donec ut augue sed nisi ullamcorper posuere sit amet eu mauris.
-                    Ut eget mauris scelerisque.
-                  </Typography>
-                </Box>
-                <Box
-                  mt={2}
-                  display="flex"
-                  justifyContent="center"
-                >
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    component={RouterLink}
-                    to="/app/projects/1"
-                  >
-                    View your project
-                  </Button>
-                </Box>
+        <Paper>
+          <Grid>
+            <Grid
+              item
+            >
+              <Box p={3}>
+                <ProjectDetails />
               </Box>
-            </CardContent>
-          </Card>
-        )}
+            </Grid>
+          </Grid>
+        </Paper>
       </Container>
-    </Page>
+    </div>
   );
 }
 
