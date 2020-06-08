@@ -1,114 +1,152 @@
-/* eslint-disable react/forbid-prop-types */
-import { createMuiTheme } from '@material-ui/core/styles';
+/* eslint-disable no-console */
+/* eslint-disable import/prefer-default-export */
+import _ from 'lodash';
+import { colors, createMuiTheme, responsiveFontSizes } from '@material-ui/core';
+import typography from './typography';
+import { softShadows, strongShadows } from './shadows';
+import { THEMES } from '../constants';
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: '#63ccff',
-      main: '#009be5',
-      dark: '#006db3',
-    },
-  },
-  typography: {
-    h5: {
-      fontWeight: 500,
-      fontSize: 26,
-      letterSpacing: 0.5,
-    },
-  },
-  shape: {
-    borderRadius: 8,
-  },
-  props: {
-    MuiTab: {
-      disableRipple: true,
-    },
-  },
-  mixins: {
-    toolbar: {
-      minHeight: 48,
-    },
-  },
-});
-
-const overrideTheme = {
-  ...theme,
+const baseConfig = {
+  direction: 'ltr',
+  typography,
   overrides: {
-    MuiDrawer: {
-      paper: {
-        backgroundColor: '#18202c',
-      },
-    },
-    MuiButton: {
-      label: {
-        textTransform: 'none',
-      },
-      contained: {
-        boxShadow: 'none',
-        '&:active': {
-          boxShadow: 'none',
-        },
-      },
-    },
-    MuiTabs: {
+    MuiLinearProgress: {
       root: {
-        marginLeft: theme.spacing(1),
-      },
-      indicator: {
-        height: 3,
-        borderTopLeftRadius: 3,
-        borderTopRightRadius: 3,
-        backgroundColor: theme.palette.common.white,
-      },
-    },
-    MuiTab: {
-      root: {
-        textTransform: 'none',
-        margin: '0 16px',
-        minWidth: 0,
-        padding: 0,
-        [theme.breakpoints.up('md')]: {
-          padding: 0,
-          minWidth: 0,
-        },
-      },
-    },
-    MuiIconButton: {
-      root: {
-        padding: theme.spacing(1),
-      },
-    },
-    MuiTooltip: {
-      tooltip: {
-        borderRadius: 4,
-      },
-    },
-    MuiDivider: {
-      root: {
-        backgroundColor: '#404854',
-      },
-    },
-    MuiListItemText: {
-      primary: {
-        fontWeight: theme.typography.fontWeightMedium,
+        borderRadius: 3,
+        overflow: 'hidden',
       },
     },
     MuiListItemIcon: {
       root: {
-        color: 'inherit',
-        marginRight: 0,
-        '& svg': {
-          fontSize: 20,
-        },
+        minWidth: 32,
       },
     },
-    MuiAvatar: {
+    MuiChip: {
       root: {
-        width: 32,
-        height: 32,
+        backgroundColor: 'rgba(0,0,0,0.075)',
       },
     },
   },
 };
 
-export default overrideTheme;
+const themeConfigs = [
+  {
+    name: THEMES.LIGHT,
+    overrides: {
+      MuiInputBase: {
+        input: {
+          '&::placeholder': {
+            opacity: 1,
+            color: colors.blueGrey[600],
+          },
+        },
+      },
+    },
+    palette: {
+      type: 'light',
+      action: {
+        active: colors.blueGrey[600],
+      },
+      background: {
+        default: colors.common.white,
+        dark: '#f4f6f8',
+        paper: colors.common.white,
+      },
+      primary: {
+        main: colors.indigo[600],
+      },
+      secondary: {
+        main: '#5850EC',
+      },
+      text: {
+        primary: colors.blueGrey[900],
+        secondary: colors.blueGrey[600],
+      },
+    },
+    shadows: softShadows,
+  },
+  {
+    name: THEMES.ONE_DARK,
+    palette: {
+      type: 'dark',
+      action: {
+        active: 'rgba(255, 255, 255, 0.54)',
+        hover: 'rgba(255, 255, 255, 0.04)',
+        selected: 'rgba(255, 255, 255, 0.08)',
+        disabled: 'rgba(255, 255, 255, 0.26)',
+        disabledBackground: 'rgba(255, 255, 255, 0.12)',
+        focus: 'rgba(255, 255, 255, 0.12)',
+      },
+      background: {
+        default: '#282C34',
+        dark: '#1c2025',
+        paper: '#282C34',
+      },
+      primary: {
+        main: '#8a85ff',
+      },
+      secondary: {
+        main: '#8a85ff',
+      },
+      text: {
+        primary: '#e6e5e8',
+        secondary: '#adb0bb',
+      },
+    },
+    shadows: strongShadows,
+  },
+  {
+    name: THEMES.UNICORN,
+    palette: {
+      type: 'dark',
+      action: {
+        active: 'rgba(255, 255, 255, 0.54)',
+        hover: 'rgba(255, 255, 255, 0.04)',
+        selected: 'rgba(255, 255, 255, 0.08)',
+        disabled: 'rgba(255, 255, 255, 0.26)',
+        disabledBackground: 'rgba(255, 255, 255, 0.12)',
+        focus: 'rgba(255, 255, 255, 0.12)',
+      },
+      background: {
+        default: '#2a2d3d',
+        dark: '#222431',
+        paper: '#2a2d3d',
+      },
+      primary: {
+        main: '#a67dff',
+      },
+      secondary: {
+        main: '#a67dff',
+      },
+      text: {
+        primary: '#f6f5f8',
+        secondary: '#9699a4',
+      },
+    },
+    shadows: strongShadows,
+  },
+];
+
+export function createTheme(settings = {}) {
+  let themeConfig = themeConfigs.find((theme) => theme.name === settings.theme);
+
+  if (!themeConfig) {
+    console.warn(new Error(`The theme ${settings.theme} is not valid`));
+    [themeConfig] = themeConfigs;
+  }
+
+  let theme = createMuiTheme(
+    _.merge(
+      {},
+      baseConfig,
+      themeConfig,
+      { direction: settings.direction },
+    ),
+  );
+
+  if (settings.responsiveFontSizes) {
+    theme = responsiveFontSizes(theme);
+  }
+
+  return theme;
+}
