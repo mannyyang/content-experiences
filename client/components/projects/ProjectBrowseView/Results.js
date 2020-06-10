@@ -122,7 +122,7 @@ function Results({ className, projects, ...rest }) {
           <Grid
             item
             key={project.id}
-            md={mode === 'grid' ? 4 : 12}
+            md={mode === 'grid' ? 6 : 12}
             sm={mode === 'grid' ? 6 : 12}
             xs={12}
           >

@@ -1,6 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import {
+  Paper,
+} from '@material-ui/core';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import cx from 'classnames';
@@ -25,9 +28,7 @@ const GET_FLIP_CARDS = gql`
   query allFlipCards {
     allFlipCards {
       id
-      front
       frontTitle
-      back
       backTitle
       description
       createdAt
@@ -77,7 +78,7 @@ function FlipCard({
   return (
     <div
       key={card.id}
-      className={cx(styles.flipCard, 'p-2')}
+      className={cx(styles.flipCard)}
     >
       {hasActions && (
         <button
@@ -91,30 +92,40 @@ function FlipCard({
         flipOnHover={false} // default false
         flipOnClick // default false
         flipDirection="horizontal" // horizontal or vertical
-        style={{ width: '300px', height: '300px' }}
+        style={{ width: '540px', height: '405px' }}
         {...rest}
       >
-        <FrontSide
-          style={{
-            backgroundColor: '#41669d',
-            backgroundImage: `url('${card.frontImage}')`,
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-          }}
-        >
-          {card.frontTitle}
+        <FrontSide>
+          <Paper
+            elevation={10}
+            style={{
+              backgroundColor: 'white',
+              backgroundImage: `url('${card.frontImage}')`,
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            {card.frontTitle}
+          </Paper>
         </FrontSide>
-        <BackSide
-          style={{
-            backgroundColor: '#175852',
-            backgroundImage: `url('${card.backImage}')`,
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-          }}
-        >
-          {card.backTitle}
+        <BackSide>
+          <Paper
+            elevation={10}
+            style={{
+              backgroundColor: 'white',
+              backgroundImage: `url('${card.backImage}')`,
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            {card.backTitle}
+          </Paper>
         </BackSide>
       </Flippy>
     </div>

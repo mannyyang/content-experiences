@@ -94,8 +94,6 @@ const useStyles = makeStyles((theme) => ({
 
 function ProjectCreateView() {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = useState(0);
-  const [completed, setCompleted] = useState(false);
 
   return (
     <div
@@ -126,20 +124,16 @@ function ProjectCreateView() {
             variant="h3"
             color="textPrimary"
           >
-            Create Wizard &amp; Process
+            Create a New Flip Card
           </Typography>
         </Box>
-        <Paper>
-          <Grid>
-            <Grid
-              item
-            >
-              <Box p={3}>
-                <ProjectDetails />
-              </Box>
-            </Grid>
+        <Grid>
+          <Grid
+            item
+          >
+            <ProjectDetails />
           </Grid>
-        </Paper>
+        </Grid>
       </Container>
     </div>
   );

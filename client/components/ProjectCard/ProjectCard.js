@@ -10,21 +10,21 @@ import {
   Avatar,
   Box,
   Card,
-  CardMedia,
+  // CardMedia,
   Divider,
-  Grid,
+  // Grid,
   IconButton,
   Link,
-  SvgIcon,
+  // SvgIcon,
   Tooltip,
   Typography,
   colors,
   makeStyles,
 } from '@material-ui/core';
-import { Rating } from '@material-ui/lab';
+// import { Rating } from '@material-ui/lab';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { Users as UsersIcon } from 'react-feather';
+// import { Users as UsersIcon } from 'react-feather';
 import getInitials from 'client/utils/getInitials';
 import FlipCard from 'client/components/FlipCard';
 
@@ -67,10 +67,6 @@ function ProjectCard({ project, className, ...rest }) {
         <FlipCard
           card={project}
           hasActions
-        />
-        <CardMedia
-          className={classes.media}
-          image={project?.media}
         />
         <Box
           display="flex"
@@ -123,60 +119,6 @@ function ProjectCard({ project, className, ...rest }) {
           {project?.description}
         </Typography>
       </Box>
-      <Box
-        py={2}
-        px={3}
-      >
-        <Grid
-          alignItems="center"
-          container
-          justify="space-between"
-          spacing={3}
-        >
-          <Grid item>
-            <Typography
-              variant="h5"
-              color="textPrimary"
-            >
-              {project?.location}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-            >
-              Location
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography
-              variant="h5"
-              color="textPrimary"
-            >
-              {project?.type}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-            >
-              Type
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography
-              variant="h5"
-              color="textPrimary"
-            >
-              {project?.technology}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-            >
-              Technology
-            </Typography>
-          </Grid>
-        </Grid>
-      </Box>
       <Divider />
       <Box
         py={2}
@@ -207,25 +149,25 @@ function ProjectCard({ project, className, ...rest }) {
         >
           {likes}
         </Typography>
-        <SvgIcon
+        {/* <SvgIcon
           fontSize="small"
           color="action"
           className={classes.subscribersIcon}
         >
           <UsersIcon />
-        </SvgIcon>
-        <Typography
+        </SvgIcon> */}
+        {/* <Typography
           variant="subtitle2"
           color="textSecondary"
         >
           {project?.subscribers}
         </Typography>
-        <Box flexGrow={1} />
-        <Rating
+        <Box flexGrow={1} /> */}
+        {/* <Rating
           value={project?.rating}
           size="small"
           readOnly
-        />
+        /> */}
       </Box>
     </Card>
   );

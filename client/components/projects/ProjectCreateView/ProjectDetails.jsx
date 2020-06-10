@@ -1,6 +1,8 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-shadow */
+import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
@@ -19,6 +21,7 @@ import {
   TextField,
   Typography,
   makeStyles,
+  Paper,
 } from '@material-ui/core';
 import { Plus as PlusIcon } from 'react-feather';
 import FilesDropzone from 'client/components/FilesDropzone';
@@ -88,6 +91,7 @@ function ProjectDetails({
   onNext,
   ...rest
 }) {
+  const router = useRouter();
   const classes = useStyles();
   const [tag, setTag] = useState('');
 
@@ -179,6 +183,8 @@ function ProjectDetails({
 
           setStatus({ success: true });
           setSubmitting(false);
+
+          router.push('/flip-cards');
         } catch (err) {
           setErrors({ submit: err.message });
           setStatus({ success: false });
@@ -202,171 +208,159 @@ function ProjectDetails({
           className={clsx(classes.root, className)}
           {...rest}
         >
-          <Typography
-            variant="h3"
-            color="textPrimary"
-          >
-            Create a New Flip Card
-          </Typography>
-          {/* <Box mt={2}>
-            <Typography
-              variant="subtitle1"
-              color="textSecondary"
-            >
-              Proin tincidunt lacus sed ante efficitur efficitur.
-              Quisque aliquam fringilla velit sit amet euismod.
-            </Typography>
-          </Box> */}
-          <Box pb={2}>
-            <TextField
-              error={Boolean(touched.name && errors.name)}
-              fullWidth
-              helperText={touched.name && errors.name}
-              label="Name"
-              name="name"
-              onBlur={handleBlur}
-              onChange={handleChange}
-              value={values.name}
-              variant="outlined"
-            />
-            <Box
-              pt={2}
-              display="flex"
-              alignItems="center"
-            >
+          <Paper>
+            <Box p={3} my={2}>
               <TextField
+                error={Boolean(touched.name && errors.name)}
                 fullWidth
-                label="Tags"
-                name="tags"
-                value={tag}
-                onChange={(event) => setTag(event.target.value)}
+                helperText={touched.name && errors.name}
+                label="Flip Card Name"
+                name="name"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.name}
                 variant="outlined"
               />
-              <IconButton
-                variant="contained"
-                className={classes.addTab}
-                onClick={() => {
-                  if (!tag) {
-                    return;
-                  }
-
-                  setFieldValue('tags', [...values.tags, tag]);
-                  setTag('');
-                }}
-              >
-                <SvgIcon>
-                  <PlusIcon />
-                </SvgIcon>
-              </IconButton>
             </Box>
-          </Box>
-          <Box pb={2}>
-            <Box
-              mt={3}
-              mb={1}
-            >
-              <Typography
-                variant="subtitle2"
-                color="textSecondary"
+          </Paper>
+          <Paper>
+            <Box p={3} my={2}>
+              <Box
+                mb={2}
               >
-                Front Side
-              </Typography>
-            </Box>
-            <Grid container>
-              <Grid item xs={6}>
-                <Box pb={2}>
-                  <TextField
-                    error={Boolean(touched.frontTitle && errors.frontTitle)}
-                    fullWidth
-                    helperText={touched.frontTitle && errors.frontTitle}
-                    label="Title"
-                    name="frontTitle"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    value={values.frontTitle}
-                    variant="outlined"
-                  />
-                </Box>
-                <FilesDropzone
-                  name="frontImage"
-                  onDrop={
+                <Typography
+                  variant="h4"
+                  color="textSecondary"
+                >
+                  Front Side
+                </Typography>
+              </Box>
+              <Grid container>
+                <Grid item xs={6}>
+                  <Box pb={2}>
+                    <TextField
+                      error={Boolean(touched.frontTitle && errors.frontTitle)}
+                      fullWidth
+                      helperText={touched.frontTitle && errors.frontTitle}
+                      label="Title"
+                      name="frontTitle"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      value={values.frontTitle}
+                      variant="outlined"
+                    />
+                  </Box>
+                  <FilesDropzone
+                    name="frontImage"
+                    onDrop={
                   (files, name) => handleImageUpload(files, name, setFieldValue)
                 }
-                />
-              </Grid>
-              <Grid
-                alignItems="center"
-                container
-                item
-                justify="center"
-                xs={6}
-              >
-                <FlipCard
-                  card={{
-                    frontTitle: values.frontTitle,
-                    backTitle: values.backTitle,
-                    frontImage: values.frontImage,
-                    backImage: values.backImage,
-                  }}
-                  isFlipped
-                />
-              </Grid>
-            </Grid>
-          </Box>
-          <Box pb={2}>
-            <Box
-              mt={3}
-              mb={1}
-            >
-              <Typography
-                variant="subtitle2"
-                color="textSecondary"
-              >
-                Back Side
-              </Typography>
-            </Box>
-            <Grid container>
-              <Grid item xs={6}>
-                <Box pb={2}>
-                  <TextField
-                    error={Boolean(touched.frontTitle && errors.frontTitle)}
-                    fullWidth
-                    helperText={touched.frontTitle && errors.frontTitle}
-                    label="Title"
-                    name="frontTitle"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    value={values.frontTitle}
-                    variant="outlined"
                   />
-                </Box>
-                <FilesDropzone
-                  name="frontImage"
-                  onDrop={
+                </Grid>
+                <Grid
+                  alignItems="center"
+                  container
+                  item
+                  justify="center"
+                  xs={6}
+                >
+                  <FlipCard
+                    card={{
+                      frontTitle: values.frontTitle,
+                      backTitle: values.backTitle,
+                      frontImage: values.frontImage,
+                      backImage: values.backImage,
+                    }}
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+          </Paper>
+          <Paper>
+            <Box p={3} my={2}>
+              <Box
+                mb={2}
+              >
+                <Typography
+                  variant="h4"
+                  color="textSecondary"
+                >
+                  Back Side
+                </Typography>
+              </Box>
+              <Grid container>
+                <Grid item xs={6}>
+                  <Box pb={2}>
+                    <TextField
+                      error={Boolean(touched.backTitle && errors.backTitle)}
+                      fullWidth
+                      helperText={touched.backTitle && errors.backTitle}
+                      label="Title"
+                      name="backTitle"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      value={values.backTitle}
+                      variant="outlined"
+                    />
+                  </Box>
+                  <FilesDropzone
+                    name="frontImage"
+                    onDrop={
                   (files, name) => handleImageUpload(files, name, setFieldValue)
                 }
-                />
+                  />
+                </Grid>
+                <Grid
+                  alignItems="center"
+                  container
+                  item
+                  justify="center"
+                  xs={6}
+                >
+                  <FlipCard
+                    card={{
+                      frontTitle: values.frontTitle,
+                      backTitle: values.backTitle,
+                      frontImage: values.frontImage,
+                      backImage: values.backImage,
+                    }}
+                    isFlipped
+                  />
+                </Grid>
               </Grid>
-              <Grid
-                alignItems="center"
-                container
-                item
-                justify="center"
-                xs={6}
-              >
-                <FlipCard
-                  card={{
-                    frontTitle: values.frontTitle,
-                    backTitle: values.backTitle,
-                    frontImage: values.frontImage,
-                    backImage: values.backImage,
-                  }}
-                  isFlipped={false}
-                />
-              </Grid>
-            </Grid>
-          </Box>
+            </Box>
+          </Paper>
+          {/* <Box
+            pt={2}
+            display="flex"
+            alignItems="center"
+          >
+            <TextField
+              fullWidth
+              label="Tags"
+              name="tags"
+              value={tag}
+              onChange={(event) => setTag(event.target.value)}
+              variant="outlined"
+            />
+            <IconButton
+              variant="contained"
+              className={classes.addTab}
+              onClick={() => {
+                if (!tag) {
+                  return;
+                }
 
+                setFieldValue('tags', [...values.tags, tag]);
+                setTag('');
+              }}
+            >
+              <SvgIcon>
+                <PlusIcon />
+              </SvgIcon>
+            </IconButton>
+          </Box>
+           */}
           <Box
             mt={6}
             display="flex"
