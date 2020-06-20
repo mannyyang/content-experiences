@@ -17,11 +17,11 @@
     width: 100%;
     position: relative;
 
-    -webkit-transition: .6s;
-       -moz-transition: .6s;
-        -ms-transition: .6s;
-         -o-transition: .6s;
-            transition: .6s;
+    -webkit-transition: 4.6s;
+       -moz-transition: 4.6s;
+        -ms-transition: 4.6s;
+         -o-transition: 4.6s;
+            transition: 4.6s;
     -moz-transform: perspective(1000px);
          transform: perspective(1000px);
 

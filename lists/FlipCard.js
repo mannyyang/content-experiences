@@ -5,12 +5,7 @@ const {
 
 module.exports = {
   fields: {
-    // old field names (keeping around for backwards support, these should be
-    // removed later)
-    front: {
-      type: Text,
-    },
-    back: {
+    title: {
       type: Text,
     },
     // updated

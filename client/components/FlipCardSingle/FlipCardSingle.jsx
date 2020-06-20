@@ -3,23 +3,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Flex } from 'reflexbox';
 import FlipCard from '../FlipCard';
-
-const GET_FLIP_CARDS = gql`
-  query allFlipCards {
-    allFlipCards {
-      id
-      frontTitle
-      frontImage
-      backTitle
-      backImage
-      description
-      createdAt
-    }
-    _allFlipCardsMeta {
-      count
-    }
-  }
-`;
+import styles from './FlipCardSingle.module.scss';
 
 const GET_FLIP_CARD = gql`
   query FlipCard {
@@ -44,8 +28,6 @@ function FlipCardSingle() {
     variables: { id: '5ed44ab06bbae4464a2bfd05' },
   });
 
-  console.log(data);
-
   useEffect(() => {
     if (error) {
       // eslint-disable-next-line no-console
@@ -55,9 +37,11 @@ function FlipCardSingle() {
 
   return (
     data ? (
-      <FlipCard
-        card={data.FlipCard}
-      />
+      <div className={styles['flip-card-wrapper']}>
+        <FlipCard
+          card={data.FlipCard}
+        />
+      </div>
     ) : null
   );
 }

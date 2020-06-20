@@ -1,22 +1,29 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 
 class FlippyCard extends React.Component {
   render() {
-    const { className, cardType, style,  elementType, animationDuration,  ...rest } = this.props;
+    const {
+      className, cardType, style, elementType, animationDuration, ...rest
+    } = this.props;
     return (React.createElement((elementType || 'div'),
       {
-        className:`flippy-card flippy-${cardType} ${className || ''}`,
+        className: `flippy-card flippy-${cardType} ${className || ''}`,
         ...rest,
         style: {
           ...(style || {}),
-          ...{ transitionDuration: `${(animationDuration / 1000)}s` }
+          ...{ transitionDuration: `${(animationDuration / 1000)}s` },
         },
       }, this.props.children)
     );
   }
 }
 
-export const FrontSide = ({ isFlipped, style, animationDuration, ...props }) => (
+export const FrontSide = ({
+  isFlipped, style, animationDuration, ...props
+}) => (
   <FlippyCard
     {...props}
     style={
@@ -42,5 +49,5 @@ export const BackSide = ({ isFlipped, style, ...props }) => (
 );
 
 FlippyCard.defaultProps = {
-  animationDuration: 600
+  animationDuration: 600,
 };

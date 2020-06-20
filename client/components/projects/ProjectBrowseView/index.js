@@ -18,6 +18,7 @@ const GET_FLIP_CARDS = gql`
   query allFlipCards {
     allFlipCards {
       id
+      title
       frontTitle
       frontImage
       backTitle

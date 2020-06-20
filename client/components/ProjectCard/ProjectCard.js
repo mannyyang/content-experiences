@@ -66,8 +66,19 @@ function ProjectCard({ project, className, ...rest }) {
       <Box p={3}>
         <FlipCard
           card={project}
-          hasActions
+          hasActions={false}
         />
+        <Box
+          pb={2}
+          px={3}
+        >
+          <Typography
+            color="textSecondary"
+            variant="body2"
+          >
+            {project?.name}
+          </Typography>
+        </Box>
         <Box
           display="flex"
           alignItems="center"

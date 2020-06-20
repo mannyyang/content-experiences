@@ -149,7 +149,7 @@ function ProjectDetails({
   return (
     <Formik
       initialValues={{
-        name: '',
+        title: '',
         tags: ['Full-Time'],
         frontTitle: '',
         backTitle: '',
@@ -158,9 +158,8 @@ function ProjectDetails({
         description: '',
       }}
       validationSchema={Yup.object().shape({
+        title: Yup.string().min(3, 'Must be at least 3 characters').max(255).required('Required'),
         tags: Yup.array(),
-        frontTitle: Yup.string().min(3, 'Must be at least 3 characters').max(255).required('Required'),
-        backTitle: Yup.string().min(3, 'Must be at least 3 characters').max(255).required('Required'),
       })}
       onSubmit={async (values, {
         setErrors,
@@ -173,6 +172,7 @@ function ProjectDetails({
           // decides to continue later.
           await addFlipCard({
             variables: {
+              title: values.title,
               frontTitle: values.frontTitle,
               backTitle: values.backTitle,
               frontImage: values.frontImage,
@@ -211,14 +211,14 @@ function ProjectDetails({
           <Paper>
             <Box p={3} my={2}>
               <TextField
-                error={Boolean(touched.name && errors.name)}
+                error={Boolean(touched.title && errors.title)}
                 fullWidth
-                helperText={touched.name && errors.name}
+                helperText={touched.title && errors.title}
                 label="Flip Card Name"
-                name="name"
+                name="title"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.name}
+                value={values.title}
                 variant="outlined"
               />
             </Box>

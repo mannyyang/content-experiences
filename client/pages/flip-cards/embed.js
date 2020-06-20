@@ -1,17 +1,20 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { useRouter } from 'next/router';
-import withData from '../../lib/apollo';
-import FlipCardSingle from '../../components/FlipCardSingle';
 
-export default withData(() => {
+export default () => {
   const router = useRouter();
 
   console.log(router?.query);
 
   return (
     <div>
-      <FlipCardSingle />
+      <iframe
+        src="/flip-cards/1233"
+        title="embed"
+        height="500px"
+        width="600px"
+      />
     </div>
   );
-});
+};
