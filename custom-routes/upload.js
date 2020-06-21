@@ -3,7 +3,10 @@ const multerS3 = require('multer-s3');
 const AWS = require('aws-sdk');
 
 // aws-sdk automatically pulls credentials from env variables. (found in .env)
-const s3 = new AWS.S3();
+const s3 = new AWS.S3({
+  accessKeyId: process.env.CE_AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.CE_AWS_SECRET_ACCESS_KEY,
+});
 
 const uploadS3 = multer({
   storage: multerS3({
