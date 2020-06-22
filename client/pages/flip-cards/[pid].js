@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { useRouter } from 'next/router';
-import withData from '../../lib/apollo';
-import FlipCardSingle from '../../components/FlipCardSingle';
+import FlipCardSingle from 'client/components/projects/ProjectDetailsView';
+import withData from 'client/lib/apollo';
 
 export default withData(() => {
   const router = useRouter();
@@ -10,8 +10,6 @@ export default withData(() => {
   console.log(router?.query);
 
   return (
-    <div>
-      <FlipCardSingle />
-    </div>
+    <FlipCardSingle id={router?.query?.pid} />
   );
 });

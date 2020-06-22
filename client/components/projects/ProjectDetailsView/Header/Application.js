@@ -9,18 +9,17 @@ import {
   Dialog,
   TextField,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import getInitials from 'src/utils/getInitials';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: theme.spacing(3)
+    padding: theme.spacing(3),
   },
   helperText: {
     textAlign: 'right',
-    marginRight: 0
-  }
+    marginRight: 0,
+  },
 }));
 
 function Application({
@@ -33,7 +32,7 @@ function Application({
 }) {
   const [value, setValue] = useState('');
   const classes = useStyles();
-  const { enqueueSnackbar } = useSnackbar();
+  const snackbar = useSnackbar();
 
   const handleChange = (event) => {
     event.persist();
@@ -41,8 +40,8 @@ function Application({
   };
 
   const handleApply = () => {
-    enqueueSnackbar('Request sent', {
-      variant: 'success'
+    snackbar.enqueueSnackbar('Request sent', {
+      variant: 'success',
     });
     onApply();
   };
@@ -97,7 +96,7 @@ function Application({
               alt="Author"
               src={author.avatar}
             >
-              {getInitials(author.name)}
+              test
             </Avatar>
             <Box ml={2}>
               <Typography
@@ -138,12 +137,12 @@ Application.propTypes = {
   className: PropTypes.string,
   onApply: PropTypes.func,
   onClose: PropTypes.func,
-  open: PropTypes.bool.isRequired
+  open: PropTypes.bool.isRequired,
 };
 
 Application.defaultProps = {
   onApply: () => {},
-  onClose: () => {}
+  onClose: () => {},
 };
 
 export default Application;

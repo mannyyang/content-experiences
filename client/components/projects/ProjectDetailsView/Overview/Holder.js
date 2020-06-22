@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import moment from 'moment';
@@ -12,22 +11,21 @@ import {
   List,
   ListItem,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import getInitials from 'src/utils/getInitials';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
   header: {
-    paddingBottom: 0
+    paddingBottom: 0,
   },
   content: {
-    paddingTop: 0
+    paddingTop: 0,
   },
   listItem: {
     padding: theme.spacing(2, 0),
-    justifyContent: 'space-between'
-  }
+    justifyContent: 'space-between',
+  },
 }));
 
 function Holder({ project, className, ...rest }) {
@@ -43,11 +41,10 @@ function Holder({ project, className, ...rest }) {
           <Avatar
             alt="Author"
             className={classes.avatar}
-            component={RouterLink}
             src={project.author.avatar}
             to="#"
           >
-            {getInitials(project.author.name)}
+            author name
           </Avatar>
         )}
         className={classes.header}
@@ -55,7 +52,6 @@ function Holder({ project, className, ...rest }) {
         subheader={(
           <Link
             color="textPrimary"
-            component={RouterLink}
             to="#"
             underline="none"
             variant="h6"
@@ -139,7 +135,7 @@ function Holder({ project, className, ...rest }) {
 
 Holder.propTypes = {
   className: PropTypes.string,
-  project: PropTypes.object.isRequired
+  project: PropTypes.object.isRequired,
 };
 
 export default Holder;

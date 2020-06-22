@@ -8,7 +8,7 @@ import {
   Grid,
   SvgIcon,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import {
   Share2 as ShareIcon,
@@ -16,7 +16,7 @@ import {
   Calendar as CalendarIcon,
   AlertTriangle as AlertIcon,
   DollarSign as DollarSignIcon,
-  Send as SendIcon
+  Send as SendIcon,
 } from 'react-feather';
 import Application from './Application';
 
@@ -25,20 +25,20 @@ const useStyles = makeStyles((theme) => ({
   badge: {
     display: 'flex',
     alignItems: 'center',
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
   },
   badgeIcon: {
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   action: {
     marginBottom: theme.spacing(1),
     '& + &': {
-      marginLeft: theme.spacing(1)
-    }
+      marginLeft: theme.spacing(1),
+    },
   },
   actionIcon: {
-    marginRight: theme.spacing(1)
-  }
+    marginRight: theme.spacing(1),
+  },
 }));
 
 function Header({ project, className, ...rest }) {
@@ -159,7 +159,7 @@ function Header({ project, className, ...rest }) {
 
 Header.propTypes = {
   className: PropTypes.string,
-  project: PropTypes.object.isRequired
+  project: PropTypes.object.isRequired,
 };
 
 Header.defaultProps = {};

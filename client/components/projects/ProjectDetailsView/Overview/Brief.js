@@ -8,18 +8,17 @@ import {
   CardContent,
   Grid,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import Markdown from 'react-markdown/with-html';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
   markdown: {
     fontFamily: theme.typography.fontFamily,
     '& p': {
-      marginBottom: theme.spacing(2)
-    }
-  }
+      marginBottom: theme.spacing(2),
+    },
+  },
 }));
 
 function Brief({ project, className, ...rest }) {
@@ -78,10 +77,6 @@ function Brief({ project, className, ...rest }) {
           >
             Description
           </Typography>
-          <Markdown
-            source={project.brief}
-            className={classes.markdown}
-          />
         </Box>
       </CardContent>
     </Card>
@@ -90,7 +85,7 @@ function Brief({ project, className, ...rest }) {
 
 Brief.propTypes = {
   project: PropTypes.object.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Brief;

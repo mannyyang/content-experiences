@@ -1,7 +1,7 @@
 import React, {
   useCallback,
   useState,
-  useEffect
+  useEffect,
 } from 'react';
 import {
   Box,
@@ -9,65 +9,47 @@ import {
   Divider,
   Tabs,
   Tab,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import axios from 'src/utils/axios';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import Page from 'src/components/Page';
 import Header from './Header';
 import Overview from './Overview';
-import Files from './Files';
-import Activities from './Activities';
-import Subscribers from './Subscribers';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
+    minHeight: '100vh',
     paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
-  }
+    paddingBottom: theme.spacing(3),
+  },
 }));
+
+const tabs = [
+  { value: 'overview', label: 'Overview' },
+];
 
 function ProjectDetailsView() {
   const classes = useStyles();
-  const isMountedRef = useIsMountedRef();
   const [currentTab, setCurrentTab] = useState('overview');
-  const [project, setProject] = useState(null);
-  const tabs = [
-    { value: 'overview', label: 'Overview' },
-    { value: 'files', label: 'Files' },
-    { value: 'activity', label: 'Activity' },
-    { value: 'subscribers', label: 'Subscribers' }
-  ];
+  const [project, setProject] = useState({
+    title: 'some title',
+    author: 'author yang',
+    tags: ['tag', 'ta2'],
+    members: [],
+  });
 
   const handleTabsChange = (event, value) => {
     setCurrentTab(value);
   };
 
-  const getProject = useCallback(() => {
-    axios
-      .get('/api/projects/projects/1')
-      .then((response) => {
-        if (isMountedRef.current) {
-          setProject(response.data.project);
-        }
-      });
-  }, [isMountedRef]);
+  // const getProject = useCallback(() => {
+  // }, []);
 
-  useEffect(() => {
-    getProject();
-  }, [getProject]);
-
-  if (!project) {
-    return null;
-  }
+  // if (!project) {
+  //   return null;
+  // }
 
   return (
-    <Page
-      className={classes.root}
-      title="Project Details"
-    >
+    <div className={classes.root}>
       <Container maxWidth="lg">
         <Header project={project} />
         <Box mt={3}>
@@ -90,12 +72,10 @@ function ProjectDetailsView() {
         <Divider />
         <Box mt={3}>
           {currentTab === 'overview' && <Overview project={project} />}
-          {currentTab === 'files' && <Files files={project.files} />}
-          {currentTab === 'activity' && <Activities activities={project.activities} />}
-          {currentTab === 'subscribers' && <Subscribers subscribers={project.subscribers} />}
         </Box>
       </Container>
-    </Page>
+    </div>
+
   );
 }
 

@@ -15,7 +15,6 @@ import {
   ListItemText,
   makeStyles
 } from '@material-ui/core';
-import getInitials from 'src/utils/getInitials';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -55,7 +54,8 @@ function Members({ members, className, ...rest }) {
                   className={classes.avatar}
                   src={member.avatar}
                 >
-                  {getInitials(member.name)}
+                  test
+                  {/* {getInitials(member.name)} */}
                 </Avatar>
               </ListItemAvatar>
               <ListItemText

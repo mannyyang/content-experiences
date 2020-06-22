@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
-  Box,
+  // Box,
   Grid,
   makeStyles
 } from '@material-ui/core';
 import Brief from './Brief';
-import Holder from './Holder';
+// import Holder from './Holder';
 import Members from './Members';
 
 const useStyles = makeStyles(() => ({
@@ -39,9 +39,6 @@ function Overview({ project, className, ...rest }) {
         xs={12}
       >
         <Members members={project.members} />
-        <Box mt={3}>
-          <Holder project={project} />
-        </Box>
       </Grid>
     </Grid>
   );
