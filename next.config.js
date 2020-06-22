@@ -3,7 +3,7 @@ const path = require('path');
 /* eslint-disable no-param-reassign */
 module.exports = {
   env: {
-    adminUrl: process.env.NODE_ENV === 'development' ? 'http://localhost:4000/admin/api' : 'http://flip-cards.com/admin/api',
+    adminUrl: process.env.NODE_ENV === 'development' ? 'http://localhost:4000/admin/api' : '/admin/api',
   },
   webpack: (config) => {
     config.resolve.alias.client = path.join(__dirname, 'client');
