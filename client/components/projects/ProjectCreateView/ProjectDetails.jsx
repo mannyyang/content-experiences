@@ -44,20 +44,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const GET_FLIP_CARDS = gql`
-//   query allFlipCards {
-//     allFlipCards {
-//       id
-//       front
-//       back
-//       description
-//       createdAt
-//     }
-//     _allFlipCardsMeta {
-//       count
-//     }
-//   }
-// `;
+const GET_FLIP_CARDS = gql`
+  query allFlipCards {
+    allFlipCards {
+      id
+      front
+      back
+      description
+      createdAt
+    }
+    _allFlipCardsMeta {
+      count
+    }
+  }
+`;
 
 const ADD_FLIP_CARD = gql`
   mutation AddFlipCard(
@@ -77,8 +77,6 @@ const ADD_FLIP_CARD = gql`
       }
     ) {
       id
-      front
-      back
       description
       createdAt
     }
@@ -98,16 +96,16 @@ function ProjectDetails({
   const [addFlipCard, { error }] = useMutation(ADD_FLIP_CARD, {
     // After a new one is added, update the cache to include the newly added
     // flip card.
-    // update(cache, { data: { createFlipCard } }) {
-    //   const { allFlipCards } = cache.readQuery({
-    //     query: GET_FLIP_CARDS,
-    //   });
+    update(cache, { data: { createFlipCard } }) {
+      const { allFlipCards } = cache.readQuery({
+        query: GET_FLIP_CARDS,
+      });
 
-    //   cache.writeQuery({
-    //     query: GET_FLIP_CARDS,
-    //     data: { allFlipCards: allFlipCards.concat([createFlipCard]) },
-    //   });
-    // },
+      cache.writeQuery({
+        query: GET_FLIP_CARDS,
+        data: { allFlipCards: allFlipCards.concat([createFlipCard]) },
+      });
+    },
   });
 
   useEffect(() => {

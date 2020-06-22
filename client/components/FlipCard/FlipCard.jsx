@@ -9,15 +9,16 @@ import { gql } from 'apollo-boost';
 import cx from 'classnames';
 // eslint-disable-next-line import/no-named-as-default
 import Flippy, { FrontSide, BackSide } from '../Flippy';
+import grey from '@material-ui/core/colors/grey';
+import blue from '@material-ui/core/colors/blue';
 
 import styles from './FlipCard.module.scss';
+import { deepOrange } from '@material-ui/core/colors';
 
 const DELETE_FLIP_CARD = gql`
   mutation deleteFlipCard($id: ID!) {
     deleteFlipCard(id: $id) {
       id
-      front
-      back
       description
       createdAt
     }
@@ -40,6 +41,7 @@ const GET_FLIP_CARDS = gql`
 `;
 
 function FlipCard({
+  animationDuration = 600,
   card,
   hasActions,
   ...rest
@@ -95,11 +97,13 @@ function FlipCard({
         style={{ width: '540px', height: '405px' }}
         {...rest}
       >
-        <FrontSide>
+        <FrontSide
+          animationDuration={animationDuration}
+        >
           <Paper
-            elevation={10}
+            elevation={20}
             style={{
-              backgroundColor: 'white',
+              backgroundColor: grey[300],
               backgroundImage: `url('${card.frontImage}')`,
               backgroundSize: 'contain',
               backgroundRepeat: 'no-repeat',
@@ -108,14 +112,23 @@ function FlipCard({
               height: '100%',
             }}
           >
-            {card.frontTitle}
+            <div 
+              className={styles['front-title']}
+              style={{
+                backgroundColor: blue[500],
+              }}
+            >
+              {card.frontTitle}
+            </div>
           </Paper>
         </FrontSide>
-        <BackSide>
+        <BackSide
+          animationDuration={animationDuration}
+        >
           <Paper
-            elevation={10}
+            elevation={20}
             style={{
-              backgroundColor: 'white',
+              backgroundColor: grey[300],
               backgroundImage: `url('${card.backImage}')`,
               backgroundSize: 'contain',
               backgroundRepeat: 'no-repeat',
@@ -124,7 +137,14 @@ function FlipCard({
               height: '100%',
             }}
           >
-            {card.backTitle}
+            <div 
+              className={styles['back-title']}
+              style={{
+                backgroundColor: deepOrange[500],
+              }}
+            >
+              {card.backTitle}
+            </div>
           </Paper>
         </BackSide>
       </Flippy>

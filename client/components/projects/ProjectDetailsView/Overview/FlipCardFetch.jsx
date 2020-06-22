@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+  useEffect,
+} from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -10,6 +12,24 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import { Flex } from 'reflexbox';
+import FlipCard from 'client/components/FlipCard';
+
+const GET_FLIP_CARD = gql`
+  query FlipCard($id: ID! ) {
+    FlipCard(where: { id: $id }) {
+      id
+      frontTitle
+      frontImage
+      backTitle
+      backImage
+      description
+      createdAt
+    }
+  }
+`;
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -21,8 +41,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Brief({ project, className, ...rest }) {
+function FlipCardFetch({
+  id,
+  project,
+  className,
+  ...rest
+}) {
   const classes = useStyles();
+  const {
+    // eslint-disable-next-line no-unused-vars
+    loading, error, data, fetchMore,
+  } = useQuery(GET_FLIP_CARD, {
+    // notifyOnNetworkStatusChange: true,
+    variables: { id },
+  });
+
+  useEffect(() => {
+    if (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
+  }, [error]);
 
   return (
     <Card
@@ -51,23 +90,6 @@ function Brief({ project, className, ...rest }) {
             >
               {project.title}
             </Typography>
-            <Box mt={3}>
-              <Typography
-                variant="subtitle2"
-                color="textSecondary"
-              >
-                Technology Stack
-              </Typography>
-              <Box mt={1}>
-                {project.tags.map((tag) => (
-                  <Chip
-                    key={tag}
-                    variant="outlined"
-                    label={tag}
-                  />
-                ))}
-              </Box>
-            </Box>
           </Grid>
         </Grid>
         <Box mt={3}>
@@ -78,14 +100,21 @@ function Brief({ project, className, ...rest }) {
             Description
           </Typography>
         </Box>
+        {
+          data ? (
+            <FlipCard
+              card={data.FlipCard}
+            />
+          ) : null
+        }
       </CardContent>
     </Card>
   );
 }
 
-Brief.propTypes = {
+FlipCardFetch.propTypes = {
   project: PropTypes.object.isRequired,
   className: PropTypes.string,
 };
 
-export default Brief;
+export default FlipCardFetch;

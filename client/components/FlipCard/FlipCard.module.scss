@@ -9,3 +9,17 @@
   top: 50%;
   left: 50%;
 }
+
+.front-title,
+.back-title {
+  width: 100%;
+  background-color: burlywood;
+  font-size: 28px;
+  font-family: sans-serif;
+  padding: 20px;
+}
+
+.back-title {
+  position: absolute;
+  bottom: 0;
+}

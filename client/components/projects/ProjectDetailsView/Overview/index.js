@@ -4,17 +4,17 @@ import clsx from 'clsx';
 import {
   // Box,
   Grid,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import Brief from './Brief';
+import FlipCardFetch from './FlipCardFetch';
 // import Holder from './Holder';
 import Members from './Members';
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
-function Overview({ project, className, ...rest }) {
+function Overview({ id, project, className, ...rest }) {
   const classes = useStyles();
 
   return (
@@ -30,7 +30,10 @@ function Overview({ project, className, ...rest }) {
         xl={9}
         xs={12}
       >
-        <Brief project={project} />
+        <FlipCardFetch
+          id={id}
+          project={project}
+        />
       </Grid>
       <Grid
         item
@@ -46,7 +49,7 @@ function Overview({ project, className, ...rest }) {
 
 Overview.propTypes = {
   className: PropTypes.string,
-  project: PropTypes.object.isRequired
+  project: PropTypes.object.isRequired,
 };
 
 export default Overview;

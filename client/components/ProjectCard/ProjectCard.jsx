@@ -6,9 +6,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import moment from 'moment';
+import { default as NextLink } from 'next/link';
 import {
   Avatar,
   Box,
+  Button,
   Card,
   // CardMedia,
   Divider,
@@ -45,8 +47,8 @@ const useStyles = makeStyles((theme) => ({
 
 function ProjectCard({ project, className, ...rest }) {
   const classes = useStyles();
-  const [isLiked, setLiked] = useState(project?.isLiked);
-  const [likes, setLikes] = useState(project?.likes);
+  const [isLiked, setLiked] = useState(false);
+  const [likes, setLikes] = useState(0);
 
   const handleLike = () => {
     setLiked(true);
@@ -179,6 +181,18 @@ function ProjectCard({ project, className, ...rest }) {
           size="small"
           readOnly
         /> */}
+        <Box flexGrow={1} />
+        <NextLink
+          href="/flip-cards/[pid]"
+          as={`/flip-cards/${project.id}`}
+        >
+          <Button
+            onClick={handleLike}
+            width="100%"
+          >
+            View
+          </Button>
+        </NextLink>
       </Box>
     </Card>
   );

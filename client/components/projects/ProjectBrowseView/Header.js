@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { default as NextLink } from 'next/link';
 import {
   Breadcrumbs,
   Button,
@@ -58,27 +59,28 @@ function Header({ className, ...rest }) {
             Browse
           </Typography>
         </Breadcrumbs>
-        <Typography
+        {/* <Typography
           variant="h3"
           color="textPrimary"
         >
           See the latest opportunities
-        </Typography>
+        </Typography> */}
       </Grid>
       <Grid item>
-        <Button
-          color="secondary"
-          to="/app/projects/create"
-          variant="contained"
-        >
-          <SvgIcon
-            fontSize="small"
-            className={classes.actionIcon}
+        <NextLink href="/flip-cards/create">
+          <Button
+            color="secondary"
+            variant="contained"
           >
-            <PlusIcon />
-          </SvgIcon>
-          Add new project
-        </Button>
+            <SvgIcon
+              fontSize="small"
+              className={classes.actionIcon}
+            >
+              <PlusIcon />
+            </SvgIcon>
+            Add New Flip Card
+          </Button>
+        </NextLink>
       </Grid>
     </Grid>
   );

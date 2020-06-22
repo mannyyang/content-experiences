@@ -27,7 +27,7 @@ const tabs = [
   { value: 'overview', label: 'Overview' },
 ];
 
-function ProjectDetailsView() {
+function ProjectDetailsView({ id }) {
   const classes = useStyles();
   const [currentTab, setCurrentTab] = useState('overview');
   const [project, setProject] = useState({
@@ -71,7 +71,7 @@ function ProjectDetailsView() {
         </Box>
         <Divider />
         <Box mt={3}>
-          {currentTab === 'overview' && <Overview project={project} />}
+          {currentTab === 'overview' && <Overview id={id} project={project} />}
         </Box>
       </Container>
     </div>
