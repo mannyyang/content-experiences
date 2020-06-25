@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, {
   useCallback,
   useState,
@@ -13,6 +14,7 @@ import {
 } from '@material-ui/core';
 import Header from './Header';
 import Overview from './Overview';
+import IDContext from './IDContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,7 +73,12 @@ function ProjectDetailsView({ id }) {
         </Box>
         <Divider />
         <Box mt={3}>
-          {currentTab === 'overview' && <Overview id={id} project={project} />}
+          <IDContext.Provider value={id}>
+            {
+              currentTab === 'overview'
+              && <Overview id={id} project={project} />
+            }
+          </IDContext.Provider>
         </Box>
       </Container>
     </div>

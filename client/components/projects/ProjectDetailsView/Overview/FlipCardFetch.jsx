@@ -1,3 +1,7 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/require-default-props */
+/* eslint-disable react/forbid-prop-types */
 import React, {
   useEffect,
 } from 'react';
@@ -5,7 +9,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
   Box,
-  Chip,
+  // Chip,
   Card,
   CardContent,
   Grid,
@@ -14,7 +18,7 @@ import {
 } from '@material-ui/core';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { Flex } from 'reflexbox';
+// import { Flex } from 'reflexbox';
 import FlipCard from 'client/components/FlipCard';
 
 const GET_FLIP_CARD = gql`
