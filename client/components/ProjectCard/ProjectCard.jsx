@@ -98,6 +98,7 @@ function ProjectCard({ project, className, ...rest }) {
               to="#"
               variant="h5"
             >
+              title
               {project?.title}
             </Link>
             <Typography
@@ -111,6 +112,7 @@ function ProjectCard({ project, className, ...rest }) {
                 to="#"
                 variant="h6"
               >
+                author name
                 {project?.author?.name}
               </Link>
               {' '}

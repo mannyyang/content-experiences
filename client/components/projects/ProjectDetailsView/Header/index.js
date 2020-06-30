@@ -147,7 +147,7 @@ function Header({ project, className, ...rest }) {
           Apply for a role
         </Button>
         <Application
-          author={project.author}
+          author={{}}
           onApply={handleApplicationClose}
           onClose={handleApplicationClose}
           open={openApplication}

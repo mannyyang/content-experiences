@@ -41,7 +41,7 @@ function Overview({ id, project, className, ...rest }) {
         xl={3}
         xs={12}
       >
-        <Members members={project.members} />
+        <Members id={id} members={project.members} />
       </Grid>
     </Grid>
   );

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -19,7 +19,7 @@ import {
   // ListItemText,
   makeStyles,
 } from '@material-ui/core';
-import IDContext from '../IDContext';
+// import IDContext from '../IDContext';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -35,13 +35,29 @@ const iframeTemplate = (id) => `<iframe src="//flip-cards.com/${id}" style="bord
 </iframe>`;
 
 function Members({
+  id,
   members,
   className,
   ...rest
 }) {
-  const id = useContext(IDContext);
+  // const id = useContext(IDContext);
   const classes = useStyles();
   const embedCode = iframeTemplate(id);
+
+  const textAreaRef = useRef();
+
+  const onClick = () => {
+    textAreaRef.current.firstChild.firstChild.focus();
+    textAreaRef.current.firstChild.firstChild.select();
+
+    try {
+      const successful = document.execCommand('copy');
+      const msg = successful ? 'successful' : 'unsuccessful';
+      console.log(`Copying text command was ${msg}`);
+    } catch (err) {
+      console.log('Oops, unable to copy');
+    }
+  };
 
   return (
     <Card
@@ -64,13 +80,17 @@ function Members({
             variant="outlined"
             value={embedCode}
             placeholder="IFrame Embed HTML"
+            ref={textAreaRef}
             // defaultValue={card.description}
           />
         </Box>
       </CardContent>
       <Divider />
       <CardActions>
-        <Button fullWidth>
+        <Button
+          fullWidth
+          onClick={onClick}
+        >
           Copy Embed Code
         </Button>
       </CardActions>

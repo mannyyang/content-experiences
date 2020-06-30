@@ -48,8 +48,9 @@ const GET_FLIP_CARDS = gql`
   query allFlipCards {
     allFlipCards {
       id
-      front
-      back
+      title
+      frontTitle
+      backTitle
       description
       createdAt
     }
@@ -61,6 +62,7 @@ const GET_FLIP_CARDS = gql`
 
 const ADD_FLIP_CARD = gql`
   mutation AddFlipCard(
+    $title: String
     $frontTitle: String
     $frontImage: String
     $backTitle: String
@@ -69,6 +71,7 @@ const ADD_FLIP_CARD = gql`
   ) {
     createFlipCard(
       data: {
+        title: $title
         frontTitle: $frontTitle
         frontImage: $frontImage
         backTitle: $backTitle
@@ -77,6 +80,11 @@ const ADD_FLIP_CARD = gql`
       }
     ) {
       id
+      title
+      frontTitle
+      frontImage
+      backTitle
+      backImage
       description
       createdAt
     }
@@ -175,7 +183,7 @@ function ProjectDetails({
               backTitle: values.backTitle,
               frontImage: values.frontImage,
               backImage: values.backImage,
-              description: '',
+              description: values.description,
             },
           });
 
@@ -208,17 +216,32 @@ function ProjectDetails({
         >
           <Paper>
             <Box p={3} my={2}>
-              <TextField
-                error={Boolean(touched.title && errors.title)}
-                fullWidth
-                helperText={touched.title && errors.title}
-                label="Flip Card Name"
-                name="title"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.title}
-                variant="outlined"
-              />
+              <Box pb={3}>
+                <TextField
+                  error={Boolean(touched.title && errors.title)}
+                  fullWidth
+                  helperText={touched.title && errors.title}
+                  label="Flip Card Name"
+                  name="title"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.title}
+                  variant="outlined"
+                />
+              </Box>
+              <Box>
+                <TextField
+                  error={Boolean(touched.description && errors.description)}
+                  fullWidth
+                  helperText={touched.description && errors.description}
+                  label="Flip Card Description"
+                  name="description"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.description}
+                  variant="outlined"
+                />
+              </Box>
             </Box>
           </Paper>
           <Paper>
@@ -302,10 +325,10 @@ function ProjectDetails({
                     />
                   </Box>
                   <FilesDropzone
-                    name="frontImage"
+                    name="backImage"
                     onDrop={
-                  (files, name) => handleImageUpload(files, name, setFieldValue)
-                }
+                      (files, name) => handleImageUpload(files, name, setFieldValue)
+                    }
                   />
                 </Grid>
                 <Grid

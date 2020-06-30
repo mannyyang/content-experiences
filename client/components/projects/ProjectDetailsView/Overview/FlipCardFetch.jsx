@@ -25,6 +25,7 @@ const GET_FLIP_CARD = gql`
   query FlipCard($id: ID! ) {
     FlipCard(where: { id: $id }) {
       id
+      title
       frontTitle
       frontImage
       backTitle
@@ -60,6 +61,8 @@ function FlipCardFetch({
     variables: { id },
   });
 
+  console.log(data);
+
   useEffect(() => {
     if (error) {
       // eslint-disable-next-line no-console
@@ -80,37 +83,57 @@ function FlipCardFetch({
           <Grid
             item
             xs={12}
-            md={6}
+            md={3}
+          >
+            <Box mb={3}>
+              <Typography
+                variant="subtitle2"
+                color="textSecondary"
+              >
+                Title
+              </Typography>
+              <Typography
+                variant="h6"
+                color="textPrimary"
+              >
+                {data?.FlipCard.title}
+              </Typography>
+            </Box>
+            <Box mb={3}>
+              <Typography
+                variant="subtitle2"
+                color="textSecondary"
+              >
+                Description
+              </Typography>
+              <Typography
+                variant="h6"
+                color="textPrimary"
+              >
+                {data?.FlipCard.description}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={9}
           >
             <Typography
               variant="subtitle2"
               color="textSecondary"
             >
-              Project Name
+              Flip Card
             </Typography>
-            <Typography
-              variant="h6"
-              color="textPrimary"
-            >
-              {project.title}
-            </Typography>
+            {
+              data ? (
+                <FlipCard
+                  card={data.FlipCard}
+                />
+              ) : null
+            }
           </Grid>
         </Grid>
-        <Box mt={3}>
-          <Typography
-            variant="subtitle2"
-            color="textSecondary"
-          >
-            Description
-          </Typography>
-        </Box>
-        {
-          data ? (
-            <FlipCard
-              card={data.FlipCard}
-            />
-          ) : null
-        }
       </CardContent>
     </Card>
   );
