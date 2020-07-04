@@ -1,7 +1,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useRef } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+// import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
   // Avatar,
@@ -13,10 +17,6 @@ import {
   CardHeader,
   Divider,
   TextField,
-  // List,
-  // ListItem,
-  // ListItemAvatar,
-  // ListItemText,
   makeStyles,
 } from '@material-ui/core';
 // import IDContext from '../IDContext';
@@ -31,7 +31,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const iframeTemplate = (id) => `<iframe src="//flip-cards.com/${id}" style="border:none; width="525px" height="525px">
+const iframeTemplate = (id) => `<iframe src="//flip-cards.com/flip-cards/embed/${id}" style="border:none; width="525px" height="525px">
 </iframe>`;
 
 function Members({
@@ -42,9 +42,12 @@ function Members({
 }) {
   // const id = useContext(IDContext);
   const classes = useStyles();
-  const embedCode = iframeTemplate(id);
-
+  const [embedCode, setEmbedCode] = useState();
   const textAreaRef = useRef();
+
+  useEffect(() => {
+    setEmbedCode(iframeTemplate(id));
+  }, [id]);
 
   const onClick = () => {
     textAreaRef.current.firstChild.firstChild.focus();
@@ -66,7 +69,7 @@ function Members({
     >
       <CardHeader
         className={classes.header}
-        title="Project members"
+        title="Embed Code"
         titleTypographyProps={{
           variant: 'overline',
         }}
@@ -75,7 +78,7 @@ function Members({
         <Box mt={2}>
           <TextField
             multiline
-            rows={6}
+            rows={8}
             fullWidth
             variant="outlined"
             value={embedCode}
@@ -99,8 +102,8 @@ function Members({
 }
 
 Members.propTypes = {
-  className: PropTypes.string,
-  members: PropTypes.array.isRequired,
+  // className: PropTypes.string,
+  // members: PropTypes.array.isRequired,
 };
 
 export default Members;

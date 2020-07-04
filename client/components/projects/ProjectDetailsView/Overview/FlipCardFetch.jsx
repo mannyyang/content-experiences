@@ -61,8 +61,6 @@ function FlipCardFetch({
     variables: { id },
   });
 
-  console.log(data);
-
   useEffect(() => {
     if (error) {
       // eslint-disable-next-line no-console

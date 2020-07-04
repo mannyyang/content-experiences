@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { default as NextLink } from 'next/link';
+import NextLink from 'next/link';
 import {
   Breadcrumbs,
   Button,
@@ -38,26 +38,28 @@ function Header({ className, ...rest }) {
           separator={<NavigateNextIcon fontSize="small" />}
           aria-label="breadcrumb"
         >
-          <Link
-            variant="body1"
-            color="inherit"
-            to="/app"
-          >
-            Dashboard
-          </Link>
-          <Link
+          <NextLink href="/flip-cards">
+            <Link
+              variant="body1"
+              color="inherit"
+              to="/flip-cards"
+            >
+              All Flip Cards
+            </Link>
+          </NextLink>
+          {/* <Link
             variant="body1"
             color="inherit"
             to="/app/projects"
           >
             Projects
-          </Link>
-          <Typography
+          </Link> */}
+          {/* <Typography
             variant="body1"
             color="textPrimary"
           >
             Browse
-          </Typography>
+          </Typography> */}
         </Breadcrumbs>
         {/* <Typography
           variant="h3"
