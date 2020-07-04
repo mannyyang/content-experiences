@@ -1,3 +1,5 @@
+/* eslint-disable react/forbid-prop-types */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -14,7 +16,11 @@ const useStyles = makeStyles(() => ({
   root: {},
 }));
 
-function Overview({ id, project, className, ...rest }) {
+function Overview({
+  id,
+  project,
+  className,
+}) {
   const classes = useStyles();
 
   return (
@@ -22,7 +28,6 @@ function Overview({ id, project, className, ...rest }) {
       className={clsx(classes.root, className)}
       container
       spacing={3}
-      {...rest}
     >
       <Grid
         item
@@ -48,7 +53,7 @@ function Overview({ id, project, className, ...rest }) {
 }
 
 Overview.propTypes = {
-  className: PropTypes.string,
+  // className: PropTypes.string,
   project: PropTypes.object.isRequired,
 };
 

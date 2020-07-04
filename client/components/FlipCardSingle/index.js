@@ -1,1 +1,1 @@
-export { default } from './FlipCardSingle';
+export { default } from './FlipCardFetch';

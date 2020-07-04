@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import moment from 'moment';
+import NextLink from 'next/link';
 import {
+  Breadcrumbs,
+  Link,
   Box,
   Button,
   Grid,
@@ -10,6 +13,7 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import {
   Share2 as ShareIcon,
   Check as CheckIcon,
@@ -61,6 +65,41 @@ function Header({ project, className, ...rest }) {
       className={clsx(classes.root, className)}
       {...rest}
     >
+      <Grid item>
+        <Breadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          aria-label="breadcrumb"
+        >
+          <NextLink href="/flip-cards">
+            <Link
+              variant="body1"
+              color="inherit"
+              to="/flip-cards"
+            >
+              All Flip Cards
+            </Link>
+          </NextLink>
+          {/* <Link
+            variant="body1"
+            color="inherit"
+            to="/app/projects"
+          >
+            Projects
+          </Link> */}
+          {/* <Typography
+            variant="body1"
+            color="textPrimary"
+          >
+            Browse
+          </Typography> */}
+        </Breadcrumbs>
+        {/* <Typography
+          variant="h3"
+          color="textPrimary"
+        >
+          See the latest opportunities
+        </Typography> */}
+      </Grid>
       <Grid item>
         <Typography
           variant="h3"
@@ -122,7 +161,7 @@ function Header({ project, className, ...rest }) {
           </div>
         </Box>
       </Grid>
-      <Grid item>
+      {/* <Grid item>
         <Button className={classes.action}>
           <SvgIcon
             fontSize="small"
@@ -152,7 +191,7 @@ function Header({ project, className, ...rest }) {
           onClose={handleApplicationClose}
           open={openApplication}
         />
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }
