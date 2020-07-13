@@ -58,9 +58,13 @@ function FlipCardFetch({
 
   return (
     <div className={styles['flip-card-wrapper']}>
-      <FlipCard
-        card={data.FlipCard}
-      />
+      {
+        data && (
+          <FlipCard
+            card={data.FlipCard}
+          />
+        )
+      }
     </div>
   );
 }

@@ -7,8 +7,6 @@ import withData from 'client/lib/apollo';
 export default withData(() => {
   const router = useRouter();
 
-  console.log(router?.query);
-
   return (
     <FlipCardSingle id={router?.query?.pid} />
   );
