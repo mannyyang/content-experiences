@@ -22,9 +22,5 @@ module.exports = {
       isRequired: false,
       defaultValue: new Date().toISOString('YYYY-MM-DD').substring(0, 10),
     },
-    assignee: {
-      type: Relationship,
-      ref: 'User.task',
-    },
   },
 };
