@@ -23,6 +23,10 @@ const keystone = new Keystone({
   adapter: new Adapter(adapterConfig),
   // When the project was first built, database hydration was needed for users.
   // onConnect: initialiseData,
+  cookie: {
+    secure: true,
+  },
+  cookieSecret: 'b53e2795e20dd54c4c544ef7ee91b935e2d8c89d705244f1a544a9bad7c9e163'
 });
 
 // Initiate all schemas here
@@ -42,17 +46,13 @@ module.exports = {
     new AdminUIApp({
       // enableDefaultRoute: false,
       authStrategy,
-      cookie: {
-        secure: process.env.NODE_ENV === 'production', // Default to true in production
-        maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
-        sameSite: false,
-      },
-      cookieSecret: 'b53e2795e20dd54c4c544ef7ee91b935e2d8c89d705244f1a544a9bad7c9e163'
     }),
     new NextApp({ dir: './client' }),
   ],
   // https://www.keystonejs.com/guides/custom-server/#you-may-not-need-a-custom-server
   configureExpress: (app) => {
+    app.set('trust proxy', 1);
+
     app.use(bodyParser.json());
 
     uploadRoute(app);
